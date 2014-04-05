@@ -1,4 +1,5 @@
 # coding:utf-8
+from __future__ import unicode_literals
 from django import forms
 
 class RegisterForm(forms.Form):
@@ -12,7 +13,7 @@ class RegisterForm(forms.Form):
     password = forms.CharField(label='password', max_length=16,
                                widget=forms.PasswordInput)
 
-    errors = {'username': '用户名不正确', 'e_mail': 'e_mail地址不正确', 'password': '密码格式不正确'}
+    #errors = {'username': '用户名不正确', 'e_mail': 'e_mail地址不正确', 'password': '密码格式不正确'}
 
 
 
@@ -26,4 +27,4 @@ class LoginForm(forms.Form):
     password = forms.CharField(label='password', max_length=16,
                                widget=forms.PasswordInput)
 
-    errors = {'username': '用户名不正确', 'password': '密码格式不正确'}
+    #errors = {'username': '用户名不正确', 'password': '密码格式不正确'}
