@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}{item 's name}{% endblock %}
+
+{% block content%}
+    <div class="container">
+        <div id="tags">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default">课本</button>
+                <button type="button" class="btn btn-default">课外书</button>
+                <button type="button" class="btn btn-default">数码产品</button>
+                <button type="button" class="btn btn-default">数码外设</button>
+                <button type="button" class="btn btn-default">家居用品</button>
+                <button type="button" class="btn btn-default">服装鞋子</button>
+                <button type="button" class="btn btn-default">体育用品</button>
+                <button type="button" class="btn btn-default">其他</button>
+            </div>
+        </div>
+        <div class="row well">
+            <div class="row">
+                <div class="col-md-9">
+                    <h4>{{projectName}}</h4>
+                </div>
+                <div class="col-md-3">
+                    <h5>{{personName}}</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><img src="{picSrc}" alt="..." class="img-rounded"></div>
+                <div class="col-md-5">
+                    <p>{{balabalbalsnlasjlksdjalkd}}</p>
+                    <span>{{time}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row well">
+            {% if itisbooked %}
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <label class="sr-only" for="info">留言</label>
+                    <input type="text" class="form-control" id="info" placeholder="留言">
+                </div>
+                <button type="submit" class="btn btn-default">预订</button>
+            </form>
+            {% else %}
+            <form class="form-inline" role="form">
+                <button type="submit" class="btn btn-default">放弃</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
