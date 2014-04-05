@@ -2,4 +2,5 @@
 *.pyc
 *.db
 .DS_*
+deploy_staticfiles
 
