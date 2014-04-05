@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}搜索{keyword}{% endblock %}
+<div class="container">
+    <div class="btn-group">
+        <button type="button" class="btn btn-default">按照价格排序</button>
+        <button type="button" class="btn btn-default">按照发布时间排序</button>
+    </div>
+    <div id="project">
+        {% for item in search_list %}
+        <div class="col-md-6 row well">
+            <div class="col-md-4"><img src="{pictureSrc}" alt="..." class="img-rounded"></div>
+            <div class="col-md-4">
+                <h4>{projectName}<small>{personName}</small></h4>
+                <p>{projectInfo}</p>
+            </div>
+            <div class="col-md-3">
+                <h3>{price}</h3>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% block content %}
