@@ -9,11 +9,12 @@
     </head>
     <body>
     {% if login %}
-        {% include header_logIn.html" %}
+        {% include "header_logIn.html" %}
     {% else %}
-        {% include header_logOut.html %}
+        {% include "header_logOut.html" %}
+    {% endif %}
     {% block content %}{% endblock %}
-    {% include footer.html %}
+    {% include "footer.html" %}
     <script src="/static/js/jquery-2.1.0.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     </body>

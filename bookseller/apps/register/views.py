@@ -35,7 +35,7 @@ def register(request):
             return HttpResponseRedirect('register/')
     else:
         form = RegisterForm()
-    return render_to_response('register.html', {'form': form}, context_instance=RequestContext(request))
+    return render_to_response('register.html', {}, context_instance=RequestContext(request))
 
 
 #def my_login(request):
