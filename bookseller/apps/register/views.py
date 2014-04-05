@@ -12,7 +12,7 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.shortcuts import render_to_response, RequestContext
 
-from forms import RegisterForm
+from forms import RegisterForm, LoginForm
 
 def register(request):
     """
@@ -55,12 +55,12 @@ def login(request):
                  auth.login(request, user)
                  return HttpResponseRedirect("/")
             else:
-                return HttpResponseRedirect("/error/invalid/")
+                return HttpResponseRedirect("/errors/invalid_login/")
         else:
-            return HttpResponseRedirect("/error/invalid/")
+            return HttpResponseRedirect("/errors/invalid_login/")
     else:
         form = LoginForm()
     return render_to_response('login.html', {'form' : form}, context_instance=RequestContext(request))
 
 def error_login_invalid(request):
-    return render_to_response('error/invalid.html',{})
+    return render_to_response('errors/invalid_login.html',{})

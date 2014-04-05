@@ -14,4 +14,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', 'bookseller.apps.main.views'),
+    url(r'^register/$', 'bookseller.apps.register.views.register'),
+    url(r'^errors/invalid_login/$', 'bookseller.apps.register.views.error_login_invalid')
 )
