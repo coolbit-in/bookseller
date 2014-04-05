@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
 
     url(r'^$', include('bookseller.apps.main.urls')),
+    url(r'^item/', include('bookseller.apps.main.urls')),
     url(r'^register/$', 'bookseller.apps.register.views.register'),
     url(r'^errors/invalid_login/$', 'bookseller.apps.register.views.error_login_invalid'),
     url(r'^admin/', include(admin.site.urls)),

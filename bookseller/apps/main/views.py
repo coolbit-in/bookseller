@@ -9,8 +9,26 @@ from django import forms
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.shortcuts import render_to_response, RequestContext
-
-
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from bookseller.apps.main import models
 def index(request):
     return HttpResponse("hello")
+
+class ItemDetail(DetailView):
+    model = models.Item
+
+    def get_context_data(self, **kwargs):
+        context = super(ItemDetail, self).get_context_data(**kwargs)
+        return context
+
+class ItemList(ListView):
+    models = models.Item
+
+    def get_context_data(self, **kwargs):
+        context = super(ItemList, self).get_context_data(**kwargs)
+        return context
+
+
 
