@@ -42,4 +42,9 @@ class Messages(models.Model):
     def __unicode__(self):
         return u'%s %s' % (self.id, self.published_time)
 
+class UserInfo(models.Model):
+    user_id = models.ForeignKey(User)
+    phone_number = models.IntegerField(max_length=11)
+    qq_number = models.IntegerField(max_length=15)
+    address = models.TextField(max_length=256)
 

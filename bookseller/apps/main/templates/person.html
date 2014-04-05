@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}个人中心{% endblock %}
+
+{% block content%}
+<div class="container">
+    <div class="page-header">
+        <h1>个人中心</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h3>交易记录</h3>
+            <div class="btn-group-vertical">
+                {% for selledItem in selled_list %}
+                <button type="button" class="btn btn-default">{{project}}<span  class="label">&nbsp;&nbsp;</span></button>
+                {% endblock %}
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            {% if not changeInfo_click %}
+            <h3>个人信息</h3>
+            <p>QQ：{qq}</p>
+            <p>电话号码：{phoneNumber}</p>
+            <p>学校：{school}</p>
+            {% if itself %}
+                <button type="button" class="btn btn-default">修改信息</button>
+            {% endif %}
+            {% else %}
+            <form class="form-horizontal" role="form" action="" method="post">
+                <div class="form-group">
+                    <label for="id_qq" class="col-sm-2 control-label">QQ：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="id_qq" placeholder="qq" name="qqNumber">
+                    </div>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="inlineCheckbox1" value="option1"> 是否公开？
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_phone" class="col-sm-2 control-label">手机号码：</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="id_phone" placeholder="手机号码" name="phoneNumber">
+                    </div>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="inlineCheckbox2" value="option1"> 是否公开？
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_school" class="col-sm-2 control-label">学校：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="id_school" placeholder="学校地址" name="school">
+                    </div>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="inlineCheckbox3" value="option1"> 是否公开？
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-2">
+                        <button type="submit" class="btn btn-default">提交修改</button>
+                    </div>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}
