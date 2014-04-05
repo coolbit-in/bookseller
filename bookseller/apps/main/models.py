@@ -8,6 +8,7 @@ class Tags(models.Model):
     def __unicode__(self):
         return u'%s' % self.name
 
+
 class Item(models.Model):
     title = models.CharField(max_length=256)
     description = models.TextField()
@@ -18,7 +19,6 @@ class Item(models.Model):
     status = models.IntegerField()
     published_time = models.DateTimeField(auto_now=True)
 
-
     def __unicode__(self):
         return u'%s %s' % (self.id, self.title)
 
@@ -28,10 +28,9 @@ class Image(models.Model):
     name = models.CharField(max_length=256)
     image = models.ImageField(upload_to='image_%Y_%m_%d')
 
-
-
     def __unicode__(self):
         return 'Image' + str(self.name)
+
 
 class Messages(models.Model):
     content = models.TextField()
@@ -39,7 +38,6 @@ class Messages(models.Model):
     from_id = models.ForeignKey(User, related_name='from')
     to_id = models.ForeignKey(User, related_name='towards')
     published_time = models.DateTimeField(auto_now=True)
-
 
     def __unicode__(self):
         return u'%s %s' % (self.id, self.published_time)

@@ -5,8 +5,11 @@
 <body>
     <h1>login</h1>
     <div>
-        {{ form.as_p }}
-        <input type="submit" value="login"/>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="login"/>
+        </form>
     </div>
 </body>
 </html>
