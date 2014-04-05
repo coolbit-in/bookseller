@@ -62,5 +62,8 @@ def login(request):
         form = LoginForm()
     return render_to_response('login.html', {'form' : form}, context_instance=RequestContext(request))
 
+def account(request):
+    pass
+
 def error_login_invalid(request):
     return render_to_response('errors/invalid_login.html',{})
