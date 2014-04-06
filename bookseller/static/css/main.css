@@ -41,6 +41,12 @@ select{
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
+/*item view*/
+#item_image{
+    width: 100%;
+}
+
+
 /*person*/
 #userinfos{
     font-size: 17px;
