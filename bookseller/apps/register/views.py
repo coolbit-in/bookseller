@@ -30,13 +30,19 @@ def register(request):
             new_user.is_active = True
             #new_user.date_joined = time.asctime()
             new_user.save()
+            new_user_info = UserInfo(user_id=new_user,
+                                     phone_number=int(info_dict['phone_number']),
+                                     qq_number=int(info_dict['qq_number']),
+                                     address=info_dict['address'])
+            new_user_info.save()
+
             return HttpResponseRedirect('/')
         else:
             print "form is not valid"
             return HttpResponseRedirect('/account/register/')
     else:
         form = RegisterForm()
-    return render_to_response('register.html', {}, context_instance=RequestContext(request))
+    return render_to_response('register.html', {'school_list': ['西安电子科技大学']}, context_instance=RequestContext(request))
 
 
 #def my_login(request):
