@@ -28,15 +28,23 @@ def create(request):
             info_dict['lasted_update_time'] = info_dict['published_time']
             info_dict['status'] = 1
             info_dict['left_number'] = info_dict['number']
+
+            tag_id=info_dict['tags']
+            tag = models.Tags.objects.get(pk=tag_id)
+            del info_dict['tags']
+
             new_item = models.Item(**info_dict)
-            new_item.save()
+
+            tag.item_set.add(new_item)
+
             return HttpResponseRedirect('/item/view/'+str(new_item.pk))
         else:
             print "valid failed!"
             return HttpResponseRedirect('/item/create')
     else:
         form = forms.ItemCreateForm()
-    return render_to_response('item_create.html', {'form' : form}, context_instance=RequestContext(request))
+        tag_list = models.Tags.objects.all()
+    return render_to_response('item_create.html', {'form' : form, 'tag_list': tag_list}, context_instance=RequestContext(request))
 
 @login_required(login_url='/account/login')
 def detail(request, pk):
