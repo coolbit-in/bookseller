@@ -50,8 +50,7 @@ def update(request, pk):
         else:
             return HttpResponseRedirect('/fail')
     else:
-        form = forms.ItemCreateForm()
-    return render_to_response('item_update.html', {'form' : form}, context_instance=RequestContext(request))
+        return render_to_response('item_update.html', {'item' : item}, context_instance=RequestContext(request))
 
 
 class ItemUpdate(UpdateView):
