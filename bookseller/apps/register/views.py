@@ -33,7 +33,7 @@ def register(request):
             return HttpResponseRedirect('/')
         else:
             print "form is not valid"
-            return HttpResponseRedirect('register/')
+            return HttpResponseRedirect('/account/register/')
     else:
         form = RegisterForm()
     return render_to_response('register.html', {}, context_instance=RequestContext(request))
@@ -56,9 +56,9 @@ def login(request):
                  auth.login(request, user)
                  return HttpResponseRedirect('/')
             else:
-                return HttpResponseRedirect('/errors/invalid_login/')
+                return HttpResponseRedirect('/account/errors/invalid_login/')
         else:
-            return HttpResponseRedirect("/errors/invalid_login/")
+            return HttpResponseRedirect("/account/errors/invalid_login/")
     else:
         form = LoginForm()
     return render_to_response('login.html', {'form' : form}, context_instance=RequestContext(request))
