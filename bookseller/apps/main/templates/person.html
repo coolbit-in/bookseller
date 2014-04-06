@@ -13,16 +13,18 @@
             <div class="btn-group-vertical">
                 {% for selledItem in selled_list %}
                 <button type="button" class="btn btn-default">{{project}}<span  class="label">&nbsp;&nbsp;</span></button>
-                {% endblock %}
+                {% endfor %}
             </div>
         </div>
 
         <div class="col-md-8">
             {% if not changeInfo_click %}
             <h3>个人信息</h3>
-            <p>QQ：{qq}</p>
-            <p>电话号码：{phoneNumber}</p>
-            <p>学校：{school}</p>
+            <p>姓名：{{ user_info.name }}</p>
+            <p>E-mail：{{ user_info.email }}</p>
+            <p>QQ：{{ user_info.qq_number }}</p>
+            <p>电话号码：{{ user_info.phone_number }}</p>
+            <!--<p>学校：{school}</p> -->
             {% if itself %}
                 <button type="button" class="btn btn-default">修改信息</button>
             {% endif %}
