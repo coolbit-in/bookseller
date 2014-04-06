@@ -11,15 +11,14 @@ from django.shortcuts import render_to_response, RequestContext
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.decorators import login_required
 
 from bookseller.apps.main import models, forms
-from bookseller.apps.register.views import user_auth_test
 
 def index(request):
     return HttpResponse("hello")
 
-@permission_required(user_auth_test, login_url='/account/login')
+@login_required(login_url='/account/login')
 def create(request):
     if request.method == 'POST':
         form = forms.ItemCreateForm(request.POST, request.FILES)
@@ -37,12 +36,12 @@ def create(request):
         form = forms.ItemCreateForm()
     return render_to_response('item_create.html', {'form' : form}, context_instance=RequestContext(request))
 
-@permission_required(user_auth_test, login_url='/account/login')
+@login_required(login_url='/account/login')
 def detail(request, pk):
     item = models.Item.objects.get(id=pk)
     return render_to_response('item_detail.html', {'item' : item}, context_instance=RequestContext(request))
 
-@permission_required(user_auth_test, login_url='/account/login')
+@login_required(login_url='/account/login')
 def update(request, pk):
     item = models.Item.objects.get(id=pk)
     if request.method == 'POST':
