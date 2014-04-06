@@ -18,6 +18,7 @@ class Item(models.Model):
     tag = models.ManyToManyField(Tags)
     status = models.IntegerField()
     published_time = models.DateTimeField(auto_now=True)
+    image = models.ImageField(upload_to='image_%Y_%m_%d')
 
     def __unicode__(self):
         return u'%s %s' % (self.id, self.title)

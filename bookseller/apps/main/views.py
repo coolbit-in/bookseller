@@ -22,9 +22,9 @@ def create(request):
             info_dict = form.cleaned_data
             info_dict['published_time'] = now()
             info_dict['status'] = 1
-            new_item = models.Item(image=request.FILES['image'], **info_dict)
+            new_item = models.Item(**info_dict)
             new_item.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/success')
         else:
             print "valid failed!"
             return HttpResponseRedirect('/item/create')
