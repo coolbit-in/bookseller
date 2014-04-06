@@ -34,6 +34,7 @@
                         <span class="help-block" id="passwordHelp"></span>
                     </div>
 
+                    <!--
                     <div class="form-group">
                         <label for="reInput" class="col-sm-3 control-label">再输入密码：</label>
                         <div class="col-sm-9">
@@ -41,32 +42,30 @@
                         </div>
                         <span class="help-block" id="repasswordHelp"></span>
                     </div>
-
+                    -->
 
                     <div class="form-group">
                         <label for="id_phoneNumber" class="col-sm-3 control-label">手机号码：</label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control required digits" id="id_phoneNumber" placeholder="输入您的手机号码" name="phoneNumber">
+                            <input type="text" class="form-control" id="id_phoneNumber" placeholder="输入您的手机号码" name="phone_number">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="id_QQNumber" class="col-sm-3 control-label">QQ号码：</label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control digits" id="id_QQNumber" placeholder="输入您的QQ号" name="QQNumber">
+                            <input type="text" class="form-control" id="id_QQNumber" placeholder="输入您的QQ号" name="qq_number">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="id_QQNumber" class="col-sm-3 control-label">学校：</label>
+                        <label for="id_School" class="col-sm-3 control-label">学校：</label>
                         <div class="col-sm-9">
-                            <form>
-                                <select name="" id="selectCss">
-                                    {% for school in school_list %}
-                                    <option value="{school_name}">{school_name}</option>
-                                    {% endfor %}
-                                </select>
-                            </form>
+                            <select name="address" id="selectCss">
+                                {% for school in school_list %}
+                                <option value="{{ school }}" >{{ school }}</option>
+                                {% endfor %}
+                            </select>
 
                         </div>
                     </div>

@@ -12,7 +12,11 @@ class RegisterForm(forms.Form):
 
     password = forms.CharField(label='password', max_length=16,
                                widget=forms.PasswordInput)
+    phone_number = forms.IntegerField(label='phone_number')
 
+    qq_number = forms.IntegerField(label='qq_number')
+
+    address = forms.CharField(label='address', max_length=256)
     #errors = {'username': '用户名不正确', 'e_mail': 'e_mail地址不正确', 'password': '密码格式不正确'}
 
 

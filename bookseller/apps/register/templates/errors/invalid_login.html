@@ -1,12 +1,40 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html>
-<head>
-    <title>
-        invalid login
-    </title>
-</head>
-<body>
-    <h1>invalid login</h1>
-</body>
-</html>
+{% block title %}登录失败{% endblock %}
+
+{% block content %}
+
+<div class="container" id="register">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <h1>登录失败<br><small>莫不是洒家填错了什么东西？</small></h1>
+    </div>
+    <div class="col-md-5">
+        <form class="form-horizontal" role="form" action="" method="post" id="registerForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_username" class="col-sm-3 control-label">用户名：</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="id_username" placeholder="输入您的用户名" name="username">
+                    <span class="help-block" id="usernameHelp"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="id_password" class="col-sm-3 control-label">密码：</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" id="id_password" placeholder="输入您的密码" name="password">
+                </div>
+                <span class="help-block" id="passwordHelp"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-2">
+                    <button type="submit" class="btn btn-default">登录</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+{% endblock %}
+
