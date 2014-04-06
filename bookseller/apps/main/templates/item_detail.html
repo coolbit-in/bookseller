@@ -19,21 +19,21 @@
         <div class="row well">
             <div class="row">
                 <div class="col-md-9">
-                    <h4>{{projectName}}</h4>
+                    <h4>{{item.title}}</h4>
                 </div>
                 <div class="col-md-3">
                     <h5>{{personName}}</h5>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3"><img src="{image}" class="img-rounded"></div>
+                <div class="col-md-3"><img src="{{item.image.url}}" class="img-rounded"></div>
                 <div class="col-md-5">
-                    <p>{{project.description}}</p>
-                    <span>{{pub_time}}</span>
+                    <p>{{item.description}}</p>
+                    <span>{{item.published_time}}</span>
                     <p>{tag}</p>
                 </div>
                 <div class="col-md-4">
-                    <h2>{price}</h2>
+                    <h2>{{item.price}}</h2>
                 </div>
             </div>
         </div>

@@ -32,6 +32,9 @@ def create(request):
         form = forms.ItemCreateForm()
     return render_to_response('item_create.html', {'form' : form}, context_instance=RequestContext(request))
 
+def detail(request, pk):
+    item = models.Item.objects.get(id=pk)
+    return render_to_response('item_detail.html', {'item' : item}, context_instance=RequestContext(request))
 
 class ItemCreate(CreateView):
     template_name_suffix = '_create'
