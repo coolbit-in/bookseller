@@ -1,9 +1,10 @@
 from django.conf.urls import patterns, url
 
 from bookseller.apps.main import views
-
+from bookseller.apps.register.views import account
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
+    url(r'^account/(\d+)/$', account),
    # url(r'^$', views.ItemList.as_view(), name='item_list'),
    # url(r'^create$', views.ItemCreate.as_view(), name='item_create'),
    # url(r'^update/(?P<pk>\d+)/', views.ItemUpdate.as_view(), name='item_update'),
