@@ -17,20 +17,24 @@ def index(request):
 
 def create(request):
     if request.method == 'POST':
-        form = forms.ItemCreateForm(request.POST)
+        form = forms.ItemCreateForm(request.POST, request.FILES)
         if form.is_valid():
             info_dict = form.cleaned_data
             info_dict['published_time'] = now()
             info_dict['status'] = 1
             new_item = models.Item(**info_dict)
             new_item.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/success')
         else:
-            return HttpResponseRedirect('register/')
+            print "valid failed!"
+            return HttpResponseRedirect('/item/create')
     else:
         form = forms.ItemCreateForm()
     return render_to_response('item_create.html', {'form' : form}, context_instance=RequestContext(request))
 
+def detail(request, pk):
+    item = models.Item.objects.get(id=pk)
+    return render_to_response('item_detail.html', {'item' : item}, context_instance=RequestContext(request))
 
 class ItemCreate(CreateView):
     template_name_suffix = '_create'
