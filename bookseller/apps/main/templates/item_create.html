@@ -8,8 +8,9 @@
         <h1>发布物品</h1>
     </div>
 
-    <div id="project">
-        <form class="form-horizontal" role="form" action="" method="post"
+    <div id="project" class="row">
+        <div class="col-md-3"></div>
+        <form class="form-horizontal col-md-7" role="form" action="" method="post"
                  {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>{% csrf_token %}
             <div class="form-group">
                 <label for="id_projectName" class="col-sm-2 control-label">物品名：</label>
@@ -21,7 +22,13 @@
             <div class="form-group">
                 <label for="id_projectInfo" class="col-sm-2 control-label">物品描述：</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="id_projectInfo" placeholder="物品描述请少于200个字。" name="description">
+                    <textarea rows="3"  type="text" class="form-control" id="id_projectInfo" placeholder="物品描述请少于200个字。" name="description"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="itemNumber" class="col-sm-2 control-label">数量：</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="itemNumber" placeholder="物品的数量" name="price">
                 </div>
             </div>
             <div class="form-group">
@@ -42,6 +49,7 @@
                 </div>
             </div>
         </form>
+        <div class="col-md-3"></div>
     </div>
 </div>
 {% endblock %}
