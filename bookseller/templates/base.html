@@ -8,7 +8,7 @@
 
     </head>
     <body>
-    {% if login %}
+    {% if user.is_authenticated %}
         {% include "header_logIn.html" %}
     {% else %}
         {% include "header_logOut.html" %}

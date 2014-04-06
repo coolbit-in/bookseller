@@ -16,14 +16,14 @@ from django.http import Http404
 from forms import RegisterForm, LoginForm
 from bookseller.apps.main.models import UserInfo
 
+def user_auth_test(user):
+    return user.is_authenticated()
+
 def show_index(request):
-    content_dict = {}
-    if request.user.is_authenticated():
-        content_dict = {'login':'True'}
-    return render_to_response('index.html', content_dict)
+    return render_to_response('index.html', context_instance=RequestContext(request))
 
 def show_search(request):
-    return render_to_response('search.html')
+    return render_to_response('search.html', context_instance=RequestContext(request))
 
 def register(request):
     """
@@ -105,10 +105,10 @@ def account(request, id):
         render_dict['qq_number'] = account_user_info.qq_number
         render_dict['address'] = account_user_info.address
         #print render_dict
-        return render_to_response('person.html', {'user_info': render_dict})
+        return render_to_response('person.html', {'user_info': render_dict}, context_instance=RequestContext(request))
     else:
-        return render_to_response('login.html', {})
+        return render_to_response('login.html', {}, context_instance=RequestContext(request))
 
 
 def error_login_invalid(request):
-    return render_to_response('errors/invalid_login.html',{})
+    return render_to_response('errors/invalid_login.html',{}, context_instance=RequestContext(request))

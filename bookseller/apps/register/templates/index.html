@@ -17,7 +17,7 @@
         </div>
     </div>
     <div id="project">
-        {% if not login %}
+        {% if not user.is_authenticated %}
         <form class="form-horizontal col-md-6 well" role="form">
             <div class="form-group">
                 <label for="id_username" class="col-sm-2 control-label">用户名:</label>
