@@ -79,8 +79,8 @@ def account(request, id):
         render_dict['phone_number'] = account_user_info.phone_number
         render_dict['qq_number'] = account_user_info.qq_number
         render_dict['address'] = account_user_info.address
-
-        return render_to_response('person.html', {'user_info ':render_dict})
+        #print render_dict
+        return render_to_response('person.html', {'user_info': render_dict})
     else:
         return render_to_response('login.html', {});
 
