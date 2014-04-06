@@ -5,6 +5,19 @@ header li{
     margin-left: 5px;
 }
 
+/*footer*/
+.footer {
+    padding: 20px 0;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    line-height: 10px;
+    background-color: #434a54;
+    color: #bdc1c5;
+    font-size: 15px;
+}
+
 /*register*/
 #register{
     padding-top: 120px;
@@ -26,4 +39,11 @@ select{
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
     -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+/*person*/
+#userinfos{
+    font-size: 17px;
+}
+#userinfos td{
 }

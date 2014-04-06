@@ -1,9 +1,64 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}个人中心{% endblock %}
+
+{% block content%}
+<div class="container">
+    <div class="page-header">
+        <h1>修改个人信息</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+
+        <div class="col-md-8">
+            <h3>修改个人信息</h3>
+            <form class="form-horizontal" role="form" action="" method="post">
+                <div class="form-group">
+                    <label for="id_password" class="col-sm-2 control-label">密码：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="id_password" placeholder="修改密码" name="password">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_qq" class="col-sm-2 control-label">QQ：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="id_qq" placeholder="qq" name="qqNumber">
+                    </div>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="inlineCheckbox1" value="option1"> 是否公开？
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_phone" class="col-sm-2 control-label">手机号码：</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="id_phone" placeholder="手机号码" name="phoneNumber">
+                    </div>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="inlineCheckbox2" value="option1"> 是否公开？
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_school" class="col-sm-2 control-label">学校：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="id_school" placeholder="学校地址" name="school">
+                    </div>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="inlineCheckbox3" value="option1"> 是否公开？
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-2">
+                        <button type="submit" class="btn btn-default">提交修改</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
