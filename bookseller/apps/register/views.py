@@ -17,7 +17,10 @@ from forms import RegisterForm, LoginForm
 from bookseller.apps.main.models import UserInfo
 
 def show_index(request):
-    return render_to_response('index.html')
+    content_dict = {}
+    if request.user.is_authenticated():
+        content_dict = {'login':'True'}
+    return render_to_response('index.html', content_dict)
 
 def show_search(request):
     return render_to_response('search.html')
