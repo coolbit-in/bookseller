@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Tags(models.Model):
-    name = models.CharField(max_length=256)
+    name = models.CharField(max_length=256, unique=True)
 
     def __unicode__(self):
         return u'%s' % self.name
@@ -16,7 +16,7 @@ class Item(models.Model):
     queue = models.ManyToManyField(User)
     number = models.IntegerField()
     left_number = models.IntegerField()
-    tag = models.ManyToManyField(Tags)
+    tag = models.ForeignKey(Tags)
     status = models.IntegerField()
     published_time = models.DateTimeField(auto_now=True)
     lasted_update_time = models.DateTimeField(auto_now=True)

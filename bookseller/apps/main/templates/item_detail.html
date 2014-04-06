@@ -32,9 +32,10 @@
                 <div class="col-md-5">
                     <p>{{item.description}}</p>
                     <span>{{item.published_time}}</span>
-                    <p>{tag}</p>
+                    <p>{{item.tag}}</p>
                 </div>
                 <div class="col-md-4">
+                    <h3>剩余数量: {{item.left_number}}</h3>
                     <h3>人民币：{{item.price}}元</h3>
                 </div>
             </div>
@@ -50,7 +51,7 @@
             </form>
             {% else %}
             <form class="form-inline" role="form">
-                <button type="submit" class="btn btn-default">放弃</button>
+                <p>都被预订了，下次早来呦！</p>
             </form>
             {% endif %}
         </div>
