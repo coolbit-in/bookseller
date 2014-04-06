@@ -25,10 +25,12 @@ def create(request):
         if form.is_valid():
             info_dict = form.cleaned_data
             info_dict['published_time'] = now()
+            info_dict['lasted_update_time'] = info_dict['published_time']
             info_dict['status'] = 1
+            info_dict['left_number'] = info_dict['number']
             new_item = models.Item(**info_dict)
             new_item.save()
-            return HttpResponseRedirect('/success')
+            return HttpResponseRedirect('/item/view/'+str(new_item.pk))
         else:
             print "valid failed!"
             return HttpResponseRedirect('/item/create')

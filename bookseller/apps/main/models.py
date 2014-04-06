@@ -15,10 +15,24 @@ class Item(models.Model):
     price = models.FloatField()
     queue = models.ManyToManyField(User)
     number = models.IntegerField()
+    left_number = models.IntegerField()
     tag = models.ManyToManyField(Tags)
     status = models.IntegerField()
     published_time = models.DateTimeField(auto_now=True)
+    lasted_update_time = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='image_%Y_%m_%d')
+
+    def if_available(self):
+        if self.left_number > 0:
+            return True
+        else:
+            return False
+
+    def if_has_image(self):
+        if self.image == '':
+            return False
+        else:
+            return True
 
     def __unicode__(self):
         return u'%s %s' % (self.id, self.title)
