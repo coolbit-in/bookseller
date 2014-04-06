@@ -1,5 +1,9 @@
 body { padding-top: 70px; }
 
+.inTheMiddle{
+    padding-top: 50%;
+}
+
 /*navbar*/
 header li{
     margin-left: 5px;

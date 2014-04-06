@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{item 's name}{% endblock %}
+{% block title %}{{item.title}}{% endblock %}
 
 {% block content%}
     <div class="container">
@@ -33,7 +33,7 @@
                     <p>{tag}</p>
                 </div>
                 <div class="col-md-4">
-                    <h2>{{item.price}}</h2>
+                    <h3>人民币：{{item.price}}元</h3>
                 </div>
             </div>
         </div>
