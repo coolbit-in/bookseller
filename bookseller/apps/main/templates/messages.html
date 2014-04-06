@@ -1,0 +1,51 @@
+{% extends "../base.html" %}
+
+{% block title %}站内信{% endblock %}
+
+{% block content%}
+<div class="container">
+    <div class="page-header">
+        <h1>站内信</h1>
+    </div>
+    <div id="u2i">
+        <table class="table">
+            {% for massage in massage_list %}
+            {% ifeqal to_id user.id %}
+            <tr>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            {{content}} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><textarea>输入你的回信</textarea>
+                                <button type="submit">回复</button>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+    <hr>
+    <div id="i2y">
+        <table class="table">
+            {% for massage in massage_list %}
+            {% ifeqal from_id user.id %}
+            <tr>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default">
+                            {{content}}
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

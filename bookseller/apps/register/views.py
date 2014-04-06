@@ -15,15 +15,16 @@ from django.http import Http404
 
 from forms import RegisterForm, LoginForm
 from bookseller.apps.main.models import UserInfo
+from django.contrib.auth.decorators import login_required
+
+def user_auth_test(user):
+    return user.is_authenticated()
 
 def show_index(request):
-    content_dict = {}
-    if request.user.is_authenticated():
-        content_dict = {'login':'True'}
-    return render_to_response('index.html', content_dict)
+    return render_to_response('index.html', context_instance=RequestContext(request))
 
 def show_search(request):
-    return render_to_response('search.html')
+    return render_to_response('search.html', context_instance=RequestContext(request))
 
 def register(request):
     """
@@ -86,29 +87,26 @@ def logout(request):
         auth.logout(request)
         return HttpResponseRedirect('/')
 
+@login_required(login_url='/account/login/')
 def account(request, id):
     user_id = int(id)
-    request_user = request.user
-    if request_user.is_authenticated():
-        #if user_id == User.objects.get(username=user.username).id:
-        #    return render_to_response('account.html', {})
-        #else:
-        try:
-            account_user = User.objects.get(id=user_id)
-        except User.DoesNotExist:
-            raise Http404
-        account_user_info = UserInfo.objects.get(user_id=user_id)
-        render_dict = {}
-        render_dict['name'] = account_user.username
-        render_dict['email'] = account_user.email
-        render_dict['phone_number'] = account_user_info.phone_number
-        render_dict['qq_number'] = account_user_info.qq_number
-        render_dict['address'] = account_user_info.address
-        #print render_dict
-        return render_to_response('person.html', {'user_info': render_dict})
-    else:
-        return render_to_response('login.html', {})
+    #if user_id == User.objects.get(username=user.username).id:
+    #    return render_to_response('account.html', {})
+    #else:
+    try:
+        account_user = User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        raise Http404
+    account_user_info = UserInfo.objects.get(user_id=user_id)
+    render_dict = {}
+    render_dict['name'] = account_user.username
+    render_dict['email'] = account_user.email
+    render_dict['phone_number'] = account_user_info.phone_number
+    render_dict['qq_number'] = account_user_info.qq_number
+    render_dict['address'] = account_user_info.address
+    #print render_dict
+    return render_to_response('person.html', {'user_info': render_dict}, context_instance=RequestContext(request))
 
 
 def error_login_invalid(request):
-    return render_to_response('errors/invalid_login.html',{})
+    return render_to_response('errors/invalid_login.html',{}, context_instance=RequestContext(request))

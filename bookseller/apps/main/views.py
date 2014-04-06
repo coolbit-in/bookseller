@@ -11,20 +11,26 @@ from django.shortcuts import render_to_response, RequestContext
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.contrib.auth.decorators import login_required
+
 from bookseller.apps.main import models, forms
+
 def index(request):
     return HttpResponse("hello")
 
+@login_required(login_url='/account/login')
 def create(request):
     if request.method == 'POST':
         form = forms.ItemCreateForm(request.POST, request.FILES)
         if form.is_valid():
             info_dict = form.cleaned_data
             info_dict['published_time'] = now()
+            info_dict['lasted_update_time'] = info_dict['published_time']
             info_dict['status'] = 1
+            info_dict['left_number'] = info_dict['number']
             new_item = models.Item(**info_dict)
             new_item.save()
-            return HttpResponseRedirect('/success')
+            return HttpResponseRedirect('/item/view/'+str(new_item.pk))
         else:
             print "valid failed!"
             return HttpResponseRedirect('/item/create')
@@ -32,10 +38,12 @@ def create(request):
         form = forms.ItemCreateForm()
     return render_to_response('item_create.html', {'form' : form}, context_instance=RequestContext(request))
 
+@login_required(login_url='/account/login')
 def detail(request, pk):
     item = models.Item.objects.get(id=pk)
     return render_to_response('item_detail.html', {'item' : item}, context_instance=RequestContext(request))
 
+@login_required(login_url='/account/login')
 def update(request, pk):
     item = models.Item.objects.get(id=pk)
     if request.method == 'POST':
