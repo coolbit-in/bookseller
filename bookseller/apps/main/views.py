@@ -29,7 +29,7 @@ def create(request):
             return HttpResponseRedirect('register/')
     else:
         form = forms.ItemCreateForm()
-    return render_to_response('item_create.html', {'form' : form})
+    return render_to_response('item_create.html', {'form' : form}, context_instance=RequestContext(request))
 
 
 class ItemCreate(CreateView):

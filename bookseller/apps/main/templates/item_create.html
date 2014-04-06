@@ -7,21 +7,21 @@
     <div class="page-header">
         <h1>发布物品</h1>
     </div>
-    {{ form.as_p }}
+
     <div id="project">
         <form class="form-horizontal" role="form" action="" method="post"
-                 {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>
+                 {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>{% csrf_token %}
             <div class="form-group">
                 <label for="id_projectName" class="col-sm-2 control-label">物品名：</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="id_projectName" placeholder="物品名请少于15个字" name="projectName">
+                    <input type="text" class="form-control" id="id_projectName" placeholder="物品名请少于15个字" name="title">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="id_projectInfo" class="col-sm-2 control-label">物品描述：</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="id_projectInfo" placeholder="物品描述请少于200个字。" name="projectInfo">
+                    <input type="text" class="form-control" id="id_projectInfo" placeholder="物品描述请少于200个字。" name="description">
                 </div>
             </div>
             <div class="form-group">
