@@ -15,6 +15,12 @@ from django.shortcuts import render_to_response, RequestContext
 from forms import RegisterForm, LoginForm
 from bookseller.apps.main.models import UserInfo
 
+def show_index(request):
+    return render_to_response('index.html')
+
+def show_search(request):
+    return render_to_response('search.html')
+
 def register(request):
     """
     This function is used to process registration requests

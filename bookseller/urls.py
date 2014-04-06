@@ -14,7 +14,8 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^$', include('bookseller.apps.main.urls')),
+    url(r'^$', 'bookseller.apps.register.views.show_index'),
+    url(r'^search/$', 'bookseller.apps.register.views.show_search'),
     url(r'^item/', include('bookseller.apps.main.urls')),
     url(r'^account/', include('bookseller.apps.register.urls')),
     url(r'^admin/', include(admin.site.urls)),

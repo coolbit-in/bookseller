@@ -50,5 +50,3 @@ class ItemList(ListView):
         context = super(ItemList, self).get_context_data(**kwargs)
         return context
 
-
-
