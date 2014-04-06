@@ -5,6 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 from django.conf.urls.static import static
 
+handle404 = 'bookseller.apps.main.http_errors_views.show_404_view'
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'bookseller.views.home', name='home'),
