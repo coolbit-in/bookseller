@@ -9,7 +9,7 @@
                 <h1>加入“卖东西”<br><small>重新发现闲置物品的价值</small></h1>
             </div>
             <div class="col-md-5">
-                <form class="form-horizontal" role="form" action="" method="post">
+                <form class="form-horizontal" role="form" action="" method="post" id="registerForm">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="id_username" class="col-sm-3 control-label">用户名：</label>
@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label for="id_e_mail" class="col-sm-3 control-label">E-mail：</label>
                         <div class="col-sm-9">
-                            <input type="email" class="form-control" id="id_e_mail" placeholder="输入您的E-mail" name="e_mail">
+                            <input type="email" class="form-control" required id="id_e_mail" placeholder="输入您的E-mail" name="email">
                         </div>
                     </div>
 

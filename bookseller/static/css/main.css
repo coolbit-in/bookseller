@@ -1,12 +1,9 @@
 body { padding-top: 70px; }
 
 /*navbar*/
-header ul{
-    margin-left: 50px;
+header li{
+    margin-left: 5px;
 }
-
-
-
 
 /*register*/
 #register{
@@ -30,9 +27,3 @@ select{
     -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
-
-
-
- #project well{
-     padding-left: 10px;
- }
