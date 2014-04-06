@@ -3,7 +3,7 @@
 {% block title %}注册{% endblock %}
 
 {% block content%}
-        <div class="container">
+        <div class="container" id="register">
             <div class="col-md-1"></div>
             <div class="col-md-5">
                 <h1>加入“卖东西”<br><small>重新发现闲置物品的价值</small></h1>
@@ -12,28 +12,67 @@
                 <form class="form-horizontal" role="form" action="" method="post">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label for="id_username" class="col-sm-2 control-label">用户名：</label>
-                        <div class="col-sm-10">
+                        <label for="id_username" class="col-sm-3 control-label">用户名：</label>
+                        <div class="col-sm-9">
                             <input type="text" class="form-control" id="id_username" placeholder="输入您的用户名" name="username">
+                            <span class="help-block" id="usernameHelp"></span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="id_e_mail" class="col-sm-2 control-label">E-mail：</label>
-                        <div class="col-sm-10">
+                        <label for="id_e_mail" class="col-sm-3 control-label">E-mail：</label>
+                        <div class="col-sm-9">
                             <input type="email" class="form-control" id="id_e_mail" placeholder="输入您的E-mail" name="e_mail">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="id_password" class="col-sm-2 control-label">密码：</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="id_password" placeholder="Password" name="password">
+                        <label for="id_password" class="col-sm-3 control-label">密码：</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="id_password" placeholder="输入您的密码" name="password">
+                        </div>
+                        <span class="help-block" id="passwordHelp"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reInput" class="col-sm-3 control-label">再输入密码：</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="reInput" placeholder="重新输入您的密码" name="password">
+                        </div>
+                        <span class="help-block" id="repasswordHelp"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="id_phoneNumber" class="col-sm-3 control-label">手机号码：</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="id_phoneNumber" placeholder="输入您的手机号码" name="phoneNumber">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-2">
+                        <label for="id_QQNumber" class="col-sm-3 control-label">QQ号码：</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="id_QQNumber" placeholder="输入您的QQ号" name="QQNumber">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_QQNumber" class="col-sm-3 control-label">学校：</label>
+                        <div class="col-sm-9">
+                            <form>
+                                <select name="" id="selectCss">
+                                    {% for school in school_list %}
+                                    <option value="{school_name}">{school_name}</option>
+                                    {% endfor %}
+                                </select>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-2">
                             <button type="submit" class="btn btn-default">注册</button>
                         </div>
                     </div>
