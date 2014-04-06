@@ -1,1 +1,17 @@
-pagination
+<table>
+    <tr>
+        {% if posts.has_previous %}
+        <td><a href="?page={{ posts.previous_page_number }}">上一页 </a></td>
+        {% endif %}
+        {% if posts.has_next %}
+        <td><a href="?page={{ posts.next_page_number }}">下一页</a></td>
+        {% endif %}
+        <td> 第 {{ posts.number }} 页,共 {{ posts.paginator.num_pages }} 页 </td>
+        <form action="." method="get">
+            <td>到第</td>
+            <td><input name="page" type="text" ></td>
+            <td> 页 </td>
+            <td><input type="submit" value=" 跳转 "></td>
+        </form>
+    </tr>
+</table>
