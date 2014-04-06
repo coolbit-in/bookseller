@@ -36,11 +36,23 @@ def detail(request, pk):
     item = models.Item.objects.get(id=pk)
     return render_to_response('item_detail.html', {'item' : item}, context_instance=RequestContext(request))
 
-class ItemCreate(CreateView):
-    template_name_suffix = '_create'
-    model = models.Item
-    fields = ['title', 'description', 'price',
-                  'number', 'tag', 'status']
+def update(request, pk):
+    item = models.Item.objects.get(id=pk)
+    if request.method == 'POST':
+        form = forms.ItemUpdateForm(request.POST, request.FILES)
+        if form.is_valid():
+            info_dict = form.cleaned_data
+            info_dict['status'] = 1
+            new_item = models.Item(**info_dict)
+            item = new_item
+            item.save()
+            return HttpResponseRedirect('/success')
+        else:
+            return HttpResponseRedirect('/fail')
+    else:
+        form = forms.ItemCreateForm()
+    return render_to_response('item_update.html', {'form' : form}, context_instance=RequestContext(request))
+
 
 class ItemUpdate(UpdateView):
     template_name_suffix = '_update'

@@ -9,3 +9,8 @@ class ItemCreateForm(forms.Form):
     price = forms.IntegerField(min_value=0)
     number = forms.IntegerField(min_value=1)
     image = forms.ImageField()
+
+class ItemUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = ['title', 'description', 'price', 'number', 'image']
