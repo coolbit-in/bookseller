@@ -23,6 +23,17 @@ class ItemDetail(DetailView):
         context = super(ItemDetail, self).get_context_data(**kwargs)
         return context
 
+class ItemCreate(CreateView):
+    template_name_suffix = '_create'
+    model = models.Item
+    fields = ['title', 'description', 'price',
+                  'number', 'tag', 'status']
+
+class ItemUpdate(UpdateView):
+    template_name_suffix = '_update'
+    model = models.Item
+    fields = ['title', 'description', 'price',
+                  'number', 'tag', 'status']
 class ItemList(ListView):
     models = models.Item
 
