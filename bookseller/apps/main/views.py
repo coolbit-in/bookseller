@@ -42,9 +42,12 @@ def update(request, pk):
         form = forms.ItemUpdateForm(request.POST, request.FILES)
         if form.is_valid():
             info_dict = form.cleaned_data
-            info_dict['status'] = 1
-            new_item = models.Item(**info_dict)
-            item = new_item
+            item.description = info_dict['description']
+            item.price = info_dict['price']
+            # TODO: delete the original image
+            if info_dict['image']:
+                item.image = request.FILES['image']
+            item.number = info_dict['number']
             item.save()
             return HttpResponseRedirect('/success')
         else:
