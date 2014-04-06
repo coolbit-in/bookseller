@@ -11,12 +11,16 @@ from django import forms
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.shortcuts import render_to_response, RequestContext
+from django.http import Http404
 
 from forms import RegisterForm, LoginForm
 from bookseller.apps.main.models import UserInfo
 
 def show_index(request):
-    return render_to_response('index.html')
+    content_dict = {}
+    if request.user.is_authenticated():
+        content_dict = {'login':'True'}
+    return render_to_response('index.html', content_dict)
 
 def show_search(request):
     return render_to_response('search.html')
@@ -75,6 +79,13 @@ def login(request):
         form = LoginForm()
     return render_to_response('login.html', {'form' : form}, context_instance=RequestContext(request))
 
+def logout(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/')
+    else:
+        auth.logout(request)
+        return HttpResponseRedirect('/')
+
 def account(request, id):
     user_id = int(id)
     request_user = request.user
@@ -82,9 +93,11 @@ def account(request, id):
         #if user_id == User.objects.get(username=user.username).id:
         #    return render_to_response('account.html', {})
         #else:
-        account_user = User.objects.get(id=user_id)
+        try:
+            account_user = User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            raise Http404
         account_user_info = UserInfo.objects.get(user_id=user_id)
-
         render_dict = {}
         render_dict['name'] = account_user.username
         render_dict['email'] = account_user.email
@@ -94,7 +107,7 @@ def account(request, id):
         #print render_dict
         return render_to_response('person.html', {'user_info': render_dict})
     else:
-        return render_to_response('login.html', {});
+        return render_to_response('login.html', {})
 
 
 def error_login_invalid(request):
