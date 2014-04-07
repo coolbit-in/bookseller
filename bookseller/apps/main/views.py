@@ -58,11 +58,20 @@ def create(request):
 def detail(request, pk):
     item = models.Item.objects.get(id=pk)
     # TODO: handle order form.
+    if request.method == 'POST':
+        form = forms.ItemOrderForm(request.POST)
+        if form.is_valid():
+            if item.left_number > 0:
+                # get the owner of the created object.Add the relationship.
+                user = User.objects.get(username=request.user.username)
+                item.queue.add(user)
+                item.save()
+                # TODO:add message.
     return render_to_response('item_detail.html', {'item' : item}, context_instance=RequestContext(request))
 
 @login_required(login_url='/account/login')
 def update(request, pk):
-    # TODO: handle delete.
+    # TODO: handle item delete and image delete.
     item = models.Item.objects.get(id=pk)
     if request.method == 'POST':
         form = forms.ItemUpdateForm(request.POST, request.FILES)
