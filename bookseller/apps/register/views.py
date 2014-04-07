@@ -14,14 +14,16 @@ from django.shortcuts import render_to_response, RequestContext
 from django.http import Http404
 
 from forms import RegisterForm, LoginForm
-from bookseller.apps.main.models import UserInfo
+from bookseller.apps.main.models import UserInfo, Item
 from django.contrib.auth.decorators import login_required
 
 def user_auth_test(user):
     return user.is_authenticated()
 
 def show_index(request):
-    return render_to_response('index.html', context_instance=RequestContext(request))
+    item_list = Item.objects.order_by('-published_time')[0:10]
+
+    return render_to_response('index.html', {'item_list':item_list}, context_instance=RequestContext(request))
 
 def show_search(request):
     return render_to_response('search.html', context_instance=RequestContext(request))
@@ -93,6 +95,7 @@ def account(request, id):
     #if user_id == User.objects.get(username=user.username).id:
     #    return render_to_response('account.html', {})
     #else:
+    request.user
     try:
         account_user = User.objects.get(id=user_id)
     except User.DoesNotExist:

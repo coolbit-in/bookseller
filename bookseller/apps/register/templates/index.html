@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="col-md-2">
-        <button type="button" class="btn btn-default"><a href="/item/create/">发布物品</a></button>
+        <a href="/item/create/"><button type="button" class="btn btn-default">发布物品</button></a>
     </div>
     </div>
     <div id="project">
@@ -44,18 +44,21 @@
         </form>
         {% endif %}
         {% for item in item_list %}
-        <div class="col-md-6 row well">
-            <div class="col-md-4"><img src="{{pictureSrc}}" alt="..." class="img-rounded"></div>
+        <div class="col-md-6 row well project">
+            <div class="col-md-4"><a href="/item/{{ item.id }}"><img src="{{ item.image.url }}" alt="..." class="img-rounded"></a></div>
             <div class="col-md-4">
-                <h4>{{projectName}}<small>{{personName}}</small></h4>
-                <p>{{projectInfo}}</p>
+                <h4><a href="/item/{{ item.id }}">{{ item.title }}</a><small>{{personName}}</small></h4>
+                <p>{{ item.description }}</p>
             </div>
             <div class="col-md-3">
-                <h3>{price}</h3>
+                <h3>{{ item.price }}</h3>
             </div>
         </div>
         {% endfor %}
     </div>
-    {% include "pagination.html" %}
+
+</div>
+<div class="container">
+{% include "pagination.html" %}
 </div>
 {% endblock %}

@@ -8,6 +8,10 @@ body { padding-top: 70px; }
 header li{
     margin-left: 5px;
 }
+.navbar-nav>li>a {
+    padding:0;
+}
+
 
 /*footer*/
 .footer {
@@ -22,11 +26,28 @@ header li{
     font-size: 15px;
 }
 
+/*index*/
+.project img{
+    width: 200px;
+}
+
+
 /*register*/
 #register{
-    padding-top: 120px;
+    padding-top: 60px;
 }
-select{
+
+#register .hint_error{
+    color: red;
+}
+
+#register span{
+    width:80px;
+}
+#register input:not(#checkbox){
+    width: 360px;
+}
+#register select{
     display: block;
     width: 100%;
     height: 34px;

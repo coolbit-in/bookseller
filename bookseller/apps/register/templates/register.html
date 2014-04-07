@@ -3,82 +3,83 @@
 {% block title %}注册{% endblock %}
 
 {% block content%}
+
+
+
+<body  onload="iniState()">
 <div class="container" id="register">
     <div class="col-md-1">
     </div>
     <div class="col-md-4">
-                <h1>加入“卖东西”<br><small>重新发现闲置物品的价值</small></h1>
+        <h1>加入<a href="/">卖东西</a><br><small>重新发现闲置的价值</small></h1>
+    </div>
+    <div class="col-md-5">
+        <form name="frm_register" method="post"  onsubmit="">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">用户名</span>
+                    <input tabindex="1" placeholder="英文或数字下划线组合，长度6－20位，以字母开头" name="username" type="text" class="form-control" id="id_username"  size="20" maxlength="20"  onfocus="clearMsg('div_uname_hint')" onblur="verifyUName(username.value,'div_uname_hint')"/>
+                </div>
+                <div id="div_uname_hint" class="hint_error"></div>
             </div>
-    <div class="col-md-6">
-                <form class="form-horizontal" role="form" action="" method="post" id="registerForm">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="id_username" class="col-sm-3 control-label">用户名：</label>
-                        <div class="col-sm-7">
-                            <input type="text" class="form-control" id="id_username" placeholder="输入您的用户名" name="username">
-                            <span class="help-block" id="usernameHelp"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_e_mail" class="col-sm-3 control-label">E-mail：</label>
-                        <div class="col-sm-7">
-                            <input type="email" class="form-control" required id="id_e_mail" placeholder="输入您的E-mail" name="e_mail">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_password" class="col-sm-3 control-label">密码：</label>
-                        <div class="col-sm-7">
-                            <input type="password" class="form-control" id="id_password" placeholder="输入您的密码" name="password">
-                        </div>
-                        <span class="help-block" id="passwordHelp"></span>
-                    </div>
-
-                    <!--
-                    <div class="form-group">
-                        <label for="reInput" class="col-sm-3 control-label">再输入密码：</label>
-                        <div class="col-sm-9">
-                            <input type="password" class="form-control" id="reInput" placeholder="重新输入您的密码" name="password">
-                        </div>
-                        <span class="help-block" id="repasswordHelp"></span>
-                    </div>
-                    -->
-
-                    <div class="form-group">
-                        <label for="id_phoneNumber" class="col-sm-3 control-label">手机号码：</label>
-                        <div class="col-sm-7">
-                            <input type="tel" required class="form-control" id="id_phoneNumber" placeholder="输入您的手机号码" name="phone_number">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_QQNumber" class="col-sm-3 control-label">QQ号码：</label>
-                        <div class="col-sm-7">
-                            <input type="number" class=" form-control" id="id_QQNumber" placeholder="输入您的QQ号" name="qq_number">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">学校：</label>
-                        <div class="col-sm-7">
-                            <select name="address" id="selectCss">
-                                {% for school in school_list %}
-                                <option value="{{ school }}" >{{ school }}</option>
-                                {% endfor %}
-                            </select>
-
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-2">
-                            <button type="submit" class="btn btn-default">注册</button>
-                            <button type="reset" class="btn-default btn">重置</button>
-                        </div>
-                    </div>
-                </form>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">电子邮箱</span>
+                    <input tabindex="2" placeholder="方便你取得重要信息，包括找回密码" class="form-control" id="id_e_mail" name="e_mail" type="text" size="20" maxlength="32"  onfocus="clearMsg('div_emailhint')" onblur="verifyEmail(e_mail.value,'div_emailhint')"/>
+                </div>
+                <div id="div_emailhint" class="hint_error"></div>
             </div>
-    <div class="col-md-1"></div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">密码</span>
+                    <input tabindex="3" placeholder="英文或数字组合，区分大小写，长度6－20位" class="form-control" id="id_password" name="password" type="password"  size="20" maxlength="20" onfocus="clearMsg('div_pwd_hint')" onblur="verifyPwd(password.value,'div_pwd_hint')"/>
+                </div>
+                <div id="div_pwd_hint" class="hint_error"></div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">重输密码</span>
+                    <input tabindex="4" class="form-control" id="repassword" name="repassword" type="password" tabindex="1" size="20" maxlength="20" onfocus="clearMsg('div_chkpwd_hint')" onblur="verifychkPwd(repassword.value,txt_chkpwd.value,'div_chkpwd_hint')"/>
+                </div>
+                <div id="div_chkpwd_hint" class="hint_error"></div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">电话号码</span>
+                    <input tabindex="5" placeholder="11位阿拉伯数字组合" class="form-control" id="id_phoneNumber" name="phone_number" type="tel" size="20" maxlength="20" onfocus="clearMsg('div_tel_hint')" onblur="verifyTel(phone_number.value,'div_tel_hint')"/>
+                </div>
+                <div id="div_tel_hint" class="hint_error"></div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">QQ号码</span>
+                    <input tabindex="6" placeholder="15位以下阿拉伯数字组合" class="form-control" id="id_QQNumber" name="qq_number" type="tel" size="20" maxlength="20" onfocus="clearMsg('div_qq_hint')" onblur="verifyQQ(qq_number.value,'div_qq_hint')"/>
+                </div>
+                <div id="div_qq_hint" class="hint_error"></div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">选择学校</span>
+                    <select tabindex="7" name="address" id="selectSchool">
+                        {% for school in school_list %}
+                        <option value="{{ school }}" >{{ school }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input tabindex="8" name="chk_accept" type="checkbox" value="checkbox" id="checkbox"/>
+                    我已阅读并接受<a href="" target="_blank">服务条款</a>
+                    <div id="div_accept_hint" class="hint_error"></div>
+                    <button tabindex="9" type="submit" class="btn btn-default" onclick="verifyInput()">注册</button>
+                    <button type="reset" class="btn-default btn">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-1">
+    </div>
 </div>
 {% endblock %}
