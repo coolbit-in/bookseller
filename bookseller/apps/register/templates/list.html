@@ -51,7 +51,7 @@
             <div class="col-md-4"><a href="{% url 'item_detail' item.id %}"><img src="/static/image/wutu.jpg" alt="..." class="img-rounded"></a></div>
             {% endif %}
             <div class="col-md-4">
-                <h4><a href="/item/{{ item.id }}">{{ item.title }}</a><small>{{personName}}</small></h4>
+                <h4><a href="{% url 'item_detail' item.id %}">{{ item.title }}</a><small>{{personName}}</small></h4>
                 <p>{{ item.description }}</p>
             </div>
             <div class="col-md-3">
