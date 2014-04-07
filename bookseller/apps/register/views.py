@@ -1,7 +1,9 @@
 # coding:utf-8
+from __future__ import unicode_literals
 import time
 from django.http import HttpResponse
 from django.http import HttpRequest
+
 from django.http import HttpResponseRedirect
 
 from django.template import Context
@@ -14,7 +16,7 @@ from django.shortcuts import render_to_response, RequestContext
 from django.http import Http404
 
 from forms import RegisterForm, LoginForm
-from bookseller.apps.main.models import UserInfo, Item
+from bookseller.apps.main.models import UserInfo, Item, Tags
 from django.contrib.auth.decorators import login_required
 
 def user_auth_test(user):
@@ -24,19 +26,29 @@ def show_index(request):
     item_list = Item.objects.order_by('-published_time')[0:10]
     return render_to_response('index.html', {'item_list':item_list}, context_instance=RequestContext(request))
 
+@login_required(login_url='/account/login/')
+def list(request, tag_name, page_num):
+    if tag_name != '全部':
+        try:
+            tag = Tags.objects.get(name=tag_name)
+        except Tags.DoesNotExist:
+            raise Http404
+        item_list = Item.objects.filter(tag=tag).order_by('-published_time')
+        items_count_num = Item.objects.filter(tag=tag).order_by('-published_time').count()
+    else:
+        item_list = Item.objects.order_by('-published_time')
+        items_count_num = Item.objects.order_by('-published_time').count()
 
-def list(request, page_num):
     page_num = int(page_num)
     list_length = 2
-    #if tag == 'all':
     posts = {}
-    items_count_num = Item.objects.order_by('-published_time').count()
-    item_list = Item.objects.order_by('-published_time')[list_length * (page_num - 1):list_length * page_num]
+    item_list = item_list[list_length * (page_num - 1):list_length * page_num]
     posts['page_number'] = page_num
     posts['pages_count_number'] = -(-items_count_num / list_length)
     posts['previous_page_number'] = page_num - 1
     posts['next_page_number'] = page_num + 1
-
+    if page_num > posts['pages_count_number']:
+        raise Http404
     if page_num > 1:
         posts['has_previous'] = True
     if page_num < posts['pages_count_number']:
