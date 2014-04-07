@@ -114,7 +114,6 @@ def account(request, id):
     #if user_id == User.objects.get(username=user.username).id:
     #    return render_to_response('account.html', {})
     #else:
-    request.user
     try:
         account_user = User.objects.get(id=user_id)
     except User.DoesNotExist:
@@ -127,7 +126,9 @@ def account(request, id):
     render_dict['qq_number'] = account_user_info.qq_number
     render_dict['address'] = account_user_info.address
     #print render_dict
-    return render_to_response('person.html', {'user_info': render_dict}, context_instance=RequestContext(request))
+    item_list = Item.objects.filter(owner=account_user).order_by('-published_time')
+
+    return render_to_response('person.html', {'user_info': render_dict, 'item_list': item_list}, context_instance=RequestContext(request))
 
 
 def error_login_invalid(request):
