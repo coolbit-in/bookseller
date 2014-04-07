@@ -12,6 +12,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 
 from bookseller.apps.main import models, forms
 
@@ -45,7 +46,7 @@ def create(request):
 
           #  user.item_set.add(new_item)
 
-            return HttpResponseRedirect('/item/view/'+str(new_item.pk))
+            return HttpResponseRedirect(reverse('item_detail', args=(new_item.id,)))
         else:
             print "valid failed!"
             return HttpResponseRedirect('/item/create')
@@ -84,8 +85,9 @@ def update(request, pk):
                 item.image = request.FILES['image']
             item.number = info_dict['number']
             item.save()
-            return HttpResponseRedirect('/success')
+            return HttpResponseRedirect(reverse('item_detail', args=(item.id)))
         else:
+            # TODO: handle failed post.
             return HttpResponseRedirect('/fail')
     else:
         return render_to_response('item_update.html', {'item' : item}, context_instance=RequestContext(request))
