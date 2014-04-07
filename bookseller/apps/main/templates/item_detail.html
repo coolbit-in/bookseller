@@ -44,19 +44,25 @@
             </div>
         </div>
         <div class="row well">
-            {% if item.if_available %}
-            <form class="form-inline" role="form" action="" method="post">{% csrf_token %}
-                <div class="form-group">
-                    <label class="sr-only" for="info">留言</label>
-                    <input type="text" class="form-control" id="info" placeholder="留言" name="message">
-                </div>
-                <button type="submit" class="btn btn-default">预订</button>
-            </form>
+
+            {% if user.username != item.owner.username %}
+                {% if item.if_available %}
+                <form class="form-inline" role="form" action="" method="post">{% csrf_token %}
+                    <div class="form-group">
+                        <label class="sr-only" for="info">留言</label>
+                        <input type="text" class="form-control" id="info" placeholder="留言" name="message">
+                    </div>
+                    <button type="submit" class="btn btn-default">预订</button>
+                </form>
+                {% else %}
+                <form class="form-inline" role="form">
+                    <p>都被预订了，下次早来呦！</p>
+                </form>
+                {% endif %}
             {% else %}
-            <form class="form-inline" role="form">
-                <p>都被预订了，下次早来呦！</p>
-            </form>
+            <a href="{% url 'item_update' item.id %}">设置</a>
             {% endif %}
+
         </div>
     </div>
 {% endblock %}

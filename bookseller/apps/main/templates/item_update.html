@@ -10,7 +10,10 @@
     <div id="project" class="row">
         <div class="col-md-4">
             <h3>原有图片</h3>
-            <img src="{{item.image.url}}" class="img-rounded" id="item_image">
+            <img src="
+                {% if item.if_has_image %}{{item.image.url}}
+                {% else %}/static/image/wutu.jpg{% endif %}
+                " class="img-rounded" id="item_image">
         </div>
         <form class="form-horizontal" role="form" action="" method="post"
                 enctype="multipart/form-data">{% csrf_token %}

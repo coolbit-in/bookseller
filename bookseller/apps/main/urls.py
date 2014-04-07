@@ -7,5 +7,5 @@ urlpatterns = patterns('',
     url(r'^create/$', views.create, name='item_create'),
     url(r'^update/(?P<pk>\d+)/', views.update, name='item_update'),
     url(r'^view/(?P<pk>\d+)/', views.detail, name='item_detail'),
-   # url(r'^delete/(?P<pk>\d+)/', views.ItemDelete.as_view(), name='item_delete'),
+    url(r'^delete/(?P<pk>\d+)/', views.delete, name='item_delete'),
 )
