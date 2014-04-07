@@ -4,47 +4,30 @@
 
 {% block content %}
 <div class="container">
+    <img src="../../../static/image/index.png"/>
     <div id="login">
-        {% if not user.is_authenticated %}
-        <form class="form-horizontal col-md-6 well" role="form">
-            <div class="form-group">
-                <label for="id_username" class="col-sm-2 control-label">用户名:</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" id="id_username" placeholder="Email">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="id_password" class="col-sm-2 control-label">密码:</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="id_password" placeholder="Password">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-2">
-                    <button type="submit" class="btn btn-default">登录</button>
-                </div>
-            </div>
-        </form>
-        {% endif %}
-<<<<<<< HEAD
-=======
-        {% for item in item_list %}
-        <div class="col-md-6 row well project">
-            {% if item.if_has_image %}
-            <div class="col-md-4"><a href="{% url 'item_detail' item.id %}"><img src="{{ item.image.url }}" alt="..." class="img-rounded"></a></div>
-            {% else %}
-            <div class="col-md-4"><a href="{% url 'item_detail' item.id %}"><img src="/static/image/wutu.jpg" alt="..." class="img-rounded"></a></div>
-            {% endif %}
-            <div class="col-md-4">
-                <h4><a href="{% url 'item_detail' item.id %}">{{ item.title }}</a><small>{{personName}}</small></h4>
-                <p>{{ item.description }}</p>
-            </div>
-            <div class="col-md-3">
-                <h3>{{ item.price }}</h3>
-            </div>
-        </div>
-        {% endfor %}
->>>>>>> 18d218b5b040e5ffb44704ec31acdc057b2eab5a
+        <!--{% if not user.is_authenticated %}-->
+        <!--<form class="form-horizontal col-md-6 well" role="form">-->
+            <!--<div class="form-group">-->
+                <!--<label for="id_username" class="col-sm-2 control-label">用户名:</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<input type="email" class="form-control" id="id_username" placeholder="Email">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="id_password" class="col-sm-2 control-label">密码:</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<input type="password" class="form-control" id="id_password" placeholder="Password">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<div class="col-sm-offset-2 col-sm-2">-->
+                    <!--<button type="submit" class="btn btn-default">登录</button>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</form>-->
+        <!--{% endif %}-->
+        <!---->
     </div>
 </div>
 {% endblock %}
