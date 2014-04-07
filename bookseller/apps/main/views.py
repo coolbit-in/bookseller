@@ -29,13 +29,21 @@ def create(request):
             info_dict['status'] = 1
             info_dict['left_number'] = info_dict['number']
 
+            # get the tag type.
             tag_id=info_dict['tags']
             tag = models.Tags.objects.get(pk=tag_id)
             del info_dict['tags']
+            info_dict['tag'] = tag
+
+            # get the owner of the created object.Add the relationship.
+            user = User.objects.get(username=request.user.username)
+            info_dict['owner'] = user
 
             new_item = models.Item(**info_dict)
+            new_item.save()
 
-            tag.item_set.add(new_item)
+
+          #  user.item_set.add(new_item)
 
             return HttpResponseRedirect('/item/view/'+str(new_item.pk))
         else:
@@ -49,10 +57,12 @@ def create(request):
 @login_required(login_url='/account/login')
 def detail(request, pk):
     item = models.Item.objects.get(id=pk)
+    # TODO: handle order form.
     return render_to_response('item_detail.html', {'item' : item}, context_instance=RequestContext(request))
 
 @login_required(login_url='/account/login')
 def update(request, pk):
+    # TODO: handle delete.
     item = models.Item.objects.get(id=pk)
     if request.method == 'POST':
         form = forms.ItemUpdateForm(request.POST, request.FILES)
