@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.http import Http404
 from django.http import HttpRequest
 from django.http import HttpResponseRedirect
 from django.utils.timezone import now
@@ -73,7 +74,12 @@ def detail(request, pk):
 @login_required(login_url='/account/login')
 def update(request, pk):
     # TODO: handle item delete and image delete.
-    item = models.Item.objects.get(id=pk)
+    item = try_get_item_by_id(pk)
+    user = get_user(request)
+
+    # check if it is the creator.
+    if user.username != item.owner.username:
+        raise Http404
     if request.method == 'POST':
         form = forms.ItemUpdateForm(request.POST, request.FILES)
         if form.is_valid():
@@ -90,18 +96,29 @@ def update(request, pk):
             # TODO: handle failed post.
             return HttpResponseRedirect('/fail')
     else:
-        return render_to_response('item_update.html', {'item' : item}, context_instance=RequestContext(request))
+        return render_to_response('item_update.html', {'item' : item, 'user': user}, context_instance=RequestContext(request))
 
 
-class ItemUpdate(UpdateView):
-    template_name_suffix = '_update'
-    model = models.Item
-    fields = ['title', 'description', 'price',
-                  'number', 'tag', 'status']
-class ItemList(ListView):
-    models = models.Item
+@login_required(login_url='/account/login')
+def delete(request, pk):
+    item = try_get_item_by_id(pk)
+    user = get_user(request)
 
-    def get_context_data(self, **kwargs):
-        context = super(ItemList, self).get_context_data(**kwargs)
-        return context
+    # check if it is the creator.
+    if user.username == item.owner.username:
+        item.delete()
+        return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/fail/')
 
+
+def get_user(request):
+    user = User.objects.get(username=request.user.username)
+    return user
+
+def try_get_item_by_id(id):
+    try:
+        item= models.Item.objects.get(id=id)
+    except:
+        raise Http404
+    return item
