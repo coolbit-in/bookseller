@@ -22,13 +22,15 @@
                     <h3>{{item.title}}</h3>
                 </div>
                 <div class="col-md-3">
-                    <h5>{{personName}}</h5>
+                    <h5>发布者： {{item.owner.username}}</h5>
                 </div>
             </div>
             <div class="row">
-                {% if item.if_has_image %}
-                <div class="col-md-3"><img src="{{item.image.url}}" class="img-rounded" id="item_image"></div>
-                {% endif %}
+                <div class="col-md-3"><img src="
+                {% if item.if_has_image %}{{item.image.url}}
+                {% else %}/static/image/wutu.jpg{% endif %}
+                " class="img-rounded" id="item_image"></div>
+
                 <div class="col-md-5">
                     <p>{{item.description}}</p>
                     <span>{{item.published_time}}</span>
@@ -42,10 +44,10 @@
         </div>
         <div class="row well">
             {% if item.if_available %}
-            <form class="form-inline" role="form">
+            <form class="form-inline" role="form" action="" method="post">{% csrf_token %}
                 <div class="form-group">
                     <label class="sr-only" for="info">留言</label>
-                    <input type="text" class="form-control" id="info" placeholder="留言">
+                    <input type="text" class="form-control" id="info" placeholder="留言" name="message">
                 </div>
                 <button type="submit" class="btn btn-default">预订</button>
             </form>

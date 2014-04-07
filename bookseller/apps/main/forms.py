@@ -12,10 +12,10 @@ class ItemCreateForm(forms.Form):
     tags = forms.IntegerField(min_value=1)
 
 class ItemOrderForm(forms.Form):
-    seller = forms.IntegerField
+    message = forms.CharField(max_length=256)
 
 class ItemUpdateForm(forms.Form):
     description = forms.CharField()
     price = forms.FloatField(min_value=0)
-    number = forms.IntegerField(min_value=1)
+    number = forms.IntegerField(min_value=0)
     image = forms.ImageField(required=False)

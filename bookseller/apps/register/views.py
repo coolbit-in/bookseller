@@ -22,8 +22,27 @@ def user_auth_test(user):
 
 def show_index(request):
     item_list = Item.objects.order_by('-published_time')[0:10]
-
     return render_to_response('index.html', {'item_list':item_list}, context_instance=RequestContext(request))
+
+
+def list(request, page_num):
+    page_num = int(page_num)
+    list_length = 2
+    #if tag == 'all':
+    posts = {}
+    items_count_num = Item.objects.order_by('-published_time').count()
+    item_list = Item.objects.order_by('-published_time')[list_length * (page_num - 1):list_length * page_num]
+    posts['page_number'] = page_num
+    posts['pages_count_number'] = -(-items_count_num / list_length)
+    posts['previous_page_number'] = page_num - 1
+    posts['next_page_number'] = page_num + 1
+
+    if page_num > 1:
+        posts['has_previous'] = True
+    if page_num < posts['pages_count_number']:
+        posts['has_next'] = True
+
+    return render_to_response('list.html', {'item_list': item_list, 'posts': posts}, context_instance=RequestContext(request))
 
 def show_search(request):
     return render_to_response('search.html', context_instance=RequestContext(request))
