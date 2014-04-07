@@ -26,7 +26,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon">电子邮箱</span>
-                    <input tabindex="2" placeholder="方便你取得重要信息，包括找回密码" class="form-control" id="id_e_mail" name="email" type="text" tabindex="1" size="20" maxlength="32"  onfocus="clearMsg('div_emailhint')" onblur="verifyEmail(email.value,'div_emailhint')"/>
+                    <input tabindex="2" placeholder="方便你取得重要信息，包括找回密码" class="form-control" id="id_e_mail" name="e_mail" type="text" size="20" maxlength="32"  onfocus="clearMsg('div_emailhint')" onblur="verifyEmail(e_mail.value,'div_emailhint')"/>
                 </div>
                 <div id="div_emailhint" class="hint_error"></div>
             </div>
@@ -47,14 +47,14 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon">电话号码</span>
-                    <input tabindex="5" placeholder="11位阿拉伯数字组合" class="form-control" id="id_phoneNumber" name="phoneNumber" type="tel" size="20" maxlength="20" onfocus="clearMsg('div_tel_hint')" onblur="verifyTel(phoneNumber.value,'div_tel_hint')"/>
+                    <input tabindex="5" placeholder="11位阿拉伯数字组合" class="form-control" id="id_phoneNumber" name="phone_number" type="tel" size="20" maxlength="20" onfocus="clearMsg('div_tel_hint')" onblur="verifyTel(phone_number.value,'div_tel_hint')"/>
                 </div>
                 <div id="div_tel_hint" class="hint_error"></div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon">QQ号码</span>
-                    <input tabindex="6" placeholder="15位以下阿拉伯数字组合" class="form-control" id="id_QQNumber" name="QQNumber" type="tel" size="20" maxlength="20" onfocus="clearMsg('div_qq_hint')" onblur="verifyQQ(QQNumber.value,'div_qq_hint')"/>
+                    <input tabindex="6" placeholder="15位以下阿拉伯数字组合" class="form-control" id="id_QQNumber" name="qq_number" type="tel" size="20" maxlength="20" onfocus="clearMsg('div_qq_hint')" onblur="verifyQQ(qq_number.value,'div_qq_hint')"/>
                 </div>
                 <div id="div_qq_hint" class="hint_error"></div>
             </div>
