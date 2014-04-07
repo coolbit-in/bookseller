@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+<div id="tags">
+    <div class="btn-group">
+        {% for tag in tag_list%}
+        <button type="button" class="btn btn-default">{{ tag.name }}</button>
+        {% endfor %}
+    </div>
+</div>

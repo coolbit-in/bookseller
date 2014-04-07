@@ -5,10 +5,14 @@ body { padding-top: 70px; }
 }
 
 /*navbar*/
+.navbar{
+    width: 100%;
+}
+
 header li{
     margin-left: 5px;
 }
-.navbar-nav>li>a {
+.navbar-nav>li>a:not(#nav_list) {
     padding:0;
 }
 
@@ -17,21 +21,26 @@ header li{
 .footer {
     padding: 20px 0;
     width: 100%;
-    position: absolute;
-    bottom: 0px;
     left: 0px;
     line-height: 10px;
     background-color: #434a54;
     color: #bdc1c5;
     font-size: 15px;
+    position: fixed; !important;
+    bottom: 0;
+    z-index: 5;
+    border: 1px solid #999999;
+    background-repeat:repeat-x;
+    _position:absolute;
+    _top:expression(document.body.scrollTop+document.body.clientHeight-this.clientHeight);
 }
 
 /*index*/
-.project img{
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
+img{
+    height: 550px;
+    clear: both;
+    display: block;
+    margin:auto;
 }
 
 

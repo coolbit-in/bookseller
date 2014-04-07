@@ -4,19 +4,7 @@
 
 {% block content%}
     <div class="container">
-        <div id="tags">
-            <div class="btn-group">
-                <button type="button" class="btn btn-default">全部</button>
-                <button type="button" class="btn btn-default">课本</button>
-                <button type="button" class="btn btn-default">课外书</button>
-                <button type="button" class="btn btn-default">数码产品</button>
-                <button type="button" class="btn btn-default">数码外设</button>
-                <button type="button" class="btn btn-default">家居用品</button>
-                <button type="button" class="btn btn-default">服装鞋子</button>
-                <button type="button" class="btn btn-default">体育用品</button>
-                <button type="button" class="btn btn-default">其他</button>
-            </div>
-        </div>
+        {% include tag_list.html %}
         <div class="row well">
             <div class="row">
                 <div class="col-md-9">
