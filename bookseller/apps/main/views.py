@@ -16,7 +16,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 
 from bookseller.apps.main import models, forms
-
+from bookseller.apps.register.forms import MessageForm
 def index(request):
     return HttpResponse("hello")
 
@@ -61,14 +61,19 @@ def detail(request, pk):
     item = models.Item.objects.get(id=pk)
     # TODO: handle order form.
     if request.method == 'POST':
-        form = forms.ItemOrderForm(request.POST)
+        form = MessageForm(request.POST)
         if form.is_valid():
-            if item.left_number > 0:
-                # get the owner of the created object.Add the relationship.
-                user = User.objects.get(username=request.user.username)
-                item.queue.add(user)
-                item.save()
-                # TODO:add message.
+            form_dict = form.cleaned_data()
+            if item.status > 0 and request.user.username == User.objects.get(id=form_dict['from_id']).username:
+                message_dict = {}
+                message_dict['from_id'] = User.objects.get(id=form_dict['from_id'])
+                message_dict['to_id'] = User.objects.get(id=form_dict['to_id'])
+                message_dict['item_id'] = models.Item.objects.get(id=form_dict['item_id'])
+                message_dict['content'] = form_dict['content']
+                message_dict['published_time'] = now()
+                new_message = models.Messages(**message_dict)
+                new_message.save()
+
     return render_to_response('item_detail.html', {'item' : item}, context_instance=RequestContext(request))
 
 @login_required(login_url='/account/login')
