@@ -19,49 +19,49 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon">用户名</span>
-                    <input placeholder="英文或数字下划线组合，长度6－20位，以字母开头" name="txt_username" type="text" class="form-control" id="id_username"  size="20" maxlength="20"  onfocus="clearMsg('div_uname_hint')" onblur="verifyUName(txt_username.value,'div_uname_hint')"/>
+                    <input tabindex="1" placeholder="英文或数字下划线组合，长度6－20位，以字母开头" name="username" type="text" class="form-control" id="id_username"  size="20" maxlength="20"  onfocus="clearMsg('div_uname_hint')" onblur="verifyUName(username.value,'div_uname_hint')"/>
                 </div>
                 <div id="div_uname_hint" class="hint_error"></div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon">电子邮箱</span>
-                    <input placeholder="方便你取得重要信息，包括找回密码" class="form-control" id="id_e_mail" name="txt_email" type="text" tabindex="1" size="20" maxlength="32"  onfocus="clearMsg('div_emailhint')" onblur="verifyEmail(txt_email.value,'div_emailhint')"/>
+                    <input tabindex="2" placeholder="方便你取得重要信息，包括找回密码" class="form-control" id="id_e_mail" name="email" type="text" tabindex="1" size="20" maxlength="32"  onfocus="clearMsg('div_emailhint')" onblur="verifyEmail(email.value,'div_emailhint')"/>
                 </div>
                 <div id="div_emailhint" class="hint_error"></div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon">密码</span>
-                    <input placeholder="英文或数字组合，区分大小写，长度6－20位" class="form-control" id="id_password" name="txt_pwd" type="password"  size="20" maxlength="20" onfocus="clearMsg('div_pwd_hint')" onblur="verifyPwd(txt_pwd.value,'div_pwd_hint')"/>
+                    <input tabindex="3" placeholder="英文或数字组合，区分大小写，长度6－20位" class="form-control" id="id_password" name="password" type="password"  size="20" maxlength="20" onfocus="clearMsg('div_pwd_hint')" onblur="verifyPwd(password.value,'div_pwd_hint')"/>
                 </div>
                 <div id="div_pwd_hint" class="hint_error"></div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon">重输密码</span>
-                    <input class="form-control" id="repassword" name="txt_chkpwd" type="password" tabindex="1" size="20" maxlength="20" onfocus="clearMsg('div_chkpwd_hint')" onblur="verifychkPwd(txt_pwd.value,txt_chkpwd.value,'div_chkpwd_hint')"/>
+                    <input tabindex="4" class="form-control" id="repassword" name="repassword" type="password" tabindex="1" size="20" maxlength="20" onfocus="clearMsg('div_chkpwd_hint')" onblur="verifychkPwd(repassword.value,txt_chkpwd.value,'div_chkpwd_hint')"/>
                 </div>
                 <div id="div_chkpwd_hint" class="hint_error"></div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon">电话号码</span>
-                    <input placeholder="11位阿拉伯数字组合" class="form-control" id="id_phoneNumber" name="txt_tel" type="tel" size="20" maxlength="20" onfocus="clearMsg('div_tel_hint')" onblur="verifyTel(txt_tel.value,'div_tel_hint')"/>
+                    <input tabindex="5" placeholder="11位阿拉伯数字组合" class="form-control" id="id_phoneNumber" name="phoneNumber" type="tel" size="20" maxlength="20" onfocus="clearMsg('div_tel_hint')" onblur="verifyTel(phoneNumber.value,'div_tel_hint')"/>
                 </div>
                 <div id="div_tel_hint" class="hint_error"></div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon">QQ号码</span>
-                    <input placeholder="15位以下阿拉伯数字组合" class="form-control" id="id_QQNumber" name="txt_qq" type="tel" size="20" maxlength="20" onfocus="clearMsg('div_qq_hint')" onblur="verifyQQ(txt_qq.value,'div_qq_hint')"/>
+                    <input tabindex="6" placeholder="15位以下阿拉伯数字组合" class="form-control" id="id_QQNumber" name="QQNumber" type="tel" size="20" maxlength="20" onfocus="clearMsg('div_qq_hint')" onblur="verifyQQ(QQNumber.value,'div_qq_hint')"/>
                 </div>
                 <div id="div_qq_hint" class="hint_error"></div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon">选择学校</span>
-                    <select name="address" id="selectSchool">
+                    <select tabindex="7" name="address" id="selectSchool">
                         {% for school in school_list %}
                         <option value="{{ school }}" >{{ school }}</option>
                         {% endfor %}
@@ -70,10 +70,10 @@
             </div>
             <div class="form-group">
                 <div class="input-group">
-                    <input name="chk_accept" type="checkbox" value="checkbox" id="checkbox"/>
+                    <input tabindex="8" name="chk_accept" type="checkbox" value="checkbox" id="checkbox"/>
                     我已阅读并接受<a href="" target="_blank">服务条款</a>
                     <div id="div_accept_hint" class="hint_error"></div>
-                    <button type="submit" class="btn btn-default" onclick="verifyInput()">注册</button>
+                    <button tabindex="9" type="submit" class="btn btn-default" onclick="verifyInput()">注册</button>
                     <button type="reset" class="btn-default btn">重置</button>
                 </div>
             </div>

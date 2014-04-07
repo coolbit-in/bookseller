@@ -327,7 +327,7 @@ function verifyInput(){
     var form = document.frm_register;
     //依次验证
     if (verifyUName(form.username.value,"div_uname_hint") && verifyPwd(form.txt_pwd.value,"div_pwd_hint") &&
-        verifychkPwd(form.txt_pwd.value,form.txt_chkpwd.value,"div_chkpwd_hint")&&
+        verifychkPwd(form.password.value,form.txt_chkpwd.value,"div_chkpwd_hint")&&
         verifyvCode(form.txt_vcode.value,"div_vcode","div_vcode_hint") && checkAccept(form,"div_accept_hint"))
     {
         alert("^_^ 恭喜，注册成功！");

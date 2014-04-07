@@ -8,6 +8,10 @@ body { padding-top: 70px; }
 header li{
     margin-left: 5px;
 }
+.navbar-nav>li>a {
+    padding:0;
+}
+
 
 /*footer*/
 .footer {
@@ -32,6 +36,11 @@ header li{
 #register{
     padding-top: 60px;
 }
+
+#register .hint_error{
+    color: red;
+}
+
 #register span{
     width:80px;
 }
