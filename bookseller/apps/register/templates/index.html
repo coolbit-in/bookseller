@@ -44,7 +44,7 @@
         </form>
         {% endif %}
         {% for item in item_list %}
-        <div class="col-md-6 row well">
+        <div class="col-md-6 row well project">
             <div class="col-md-4"><img src="{{pictureSrc}}" alt="..." class="img-rounded"></div>
             <div class="col-md-4">
                 <h4>{{projectName}}<small>{{personName}}</small></h4>
@@ -56,6 +56,9 @@
         </div>
         {% endfor %}
     </div>
-    {% include "pagination.html" %}
+
+</div>
+<div class="container">
+{% include "pagination.html" %}
 </div>
 {% endblock %}
