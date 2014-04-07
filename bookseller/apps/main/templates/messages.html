@@ -1,4 +1,4 @@
-{% extends "../base.html" %}
+{% extends "base.html" %}
 
 {% block title %}站内信{% endblock %}
 
@@ -10,7 +10,6 @@
     <div id="u2i">
         <table class="table">
             {% for massage in massage_list %}
-            {% ifeqal to_id user.id %}
             <tr>
                 <td>
                     <div class="btn-group">
@@ -25,7 +24,6 @@
                     </div>
                 </td>
             </tr>
-            {% endif %}
             {% endfor %}
         </table>
     </div>
@@ -33,7 +31,6 @@
     <div id="i2y">
         <table class="table">
             {% for massage in massage_list %}
-            {% ifeqal from_id user.id %}
             <tr>
                 <td>
                     <div class="btn-group">
@@ -43,7 +40,6 @@
                     </div>
                 </td>
             </tr>
-            {% endif %}
             {% endfor %}
         </table>
     </div>

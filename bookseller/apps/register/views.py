@@ -16,7 +16,7 @@ from django.shortcuts import render_to_response, RequestContext
 from django.http import Http404
 
 from forms import RegisterForm, LoginForm
-from bookseller.apps.main.models import UserInfo, Item, Tags
+from bookseller.apps.main.models import UserInfo, Item, Tags, Messages
 from django.contrib.auth.decorators import login_required
 
 def user_auth_test(user):
@@ -141,6 +141,12 @@ def account(request, id):
     item_list = Item.objects.filter(owner=account_user).order_by('-published_time')
 
     return render_to_response('person.html', {'user_info': render_dict, 'item_list': item_list}, context_instance=RequestContext(request))
+
+@login_required(login_url='/account/login/')
+def message(request):
+    user = User.objects.get(username=request.user.username)
+    message_list = Messages.objects.exclude(from_id=user, to_id=user)
+    return render_to_response('messages.html', {'message_list': message_list}, context_instance=RequestContext(request))
 
 
 def error_login_invalid(request):
