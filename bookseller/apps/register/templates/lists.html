@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}物品们{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+    <div id="tags" class="col-md-10">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default">课本</button>
+            <button type="button" class="btn btn-default">课外书</button>
+            <button type="button" class="btn btn-default">数码产品</button>
+            <button type="button" class="btn btn-default">数码外设</button>
+            <button type="button" class="btn btn-default">家居用品</button>
+            <button type="button" class="btn btn-default">服装鞋子</button>
+            <button type="button" class="btn btn-default">体育用品</button>
+            <button type="button" class="btn btn-default">其他</button>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <a href="/item/create/"><button type="button" class="btn btn-default">发布物品</button></a>
+    </div>
+    </div>
+    <div id="project">
+        {% for item in item_list %}
+        <div class="col-md-6 row well project">
+            <div class="col-md-4"><a href="/item/view/{{ item.id }}"><img src="{{ item.image.url }}" alt="..." class="img-rounded"></a></div>
+            <div class="col-md-4">
+                <h4><a href="/item/{{ item.id }}">{{ item.title }}</a><small>{{personName}}</small></h4>
+                <p>{{ item.description }}</p>
+            </div>
+            <div class="col-md-3">
+                <h3>{{ item.price }}</h3>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+<div class="container">
+{% include "pagination.html" %}
+</div>
+{% endblock %}
