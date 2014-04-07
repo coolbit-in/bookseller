@@ -1,9 +1,205 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}Loading.....{% endblock %}
+
+{% block content %}
+<div class="container">
+    <script type="text/javascript">
+        function countDown(secs,surl){
+            //alert(surl);
+            if(--secs>0){
+                setTimeout("countDown("+secs+",'"+surl+"')",1000);
+            }
+            else{
+                location.href=surl;
+            }
+        }
+        countDown(3,'/');
+    </script>
+    <style>
+        #circularG{
+            position:relative;
+            width:200px;
+            height:200px}
+
+        .circularG{
+            position:absolute;
+            background-color:#21B7C2;
+            width:45px;
+            height:45px;
+            -moz-border-radius:30px;
+            -moz-animation-name:bounce_circularG;
+            -moz-animation-duration:1.36s;
+            -moz-animation-iteration-count:infinite;
+            -moz-animation-direction:linear;
+            -webkit-border-radius:30px;
+            -webkit-animation-name:bounce_circularG;
+            -webkit-animation-duration:1.36s;
+            -webkit-animation-iteration-count:infinite;
+            -webkit-animation-direction:linear;
+            -ms-border-radius:30px;
+            -ms-animation-name:bounce_circularG;
+            -ms-animation-duration:1.36s;
+            -ms-animation-iteration-count:infinite;
+            -ms-animation-direction:linear;
+            -o-border-radius:30px;
+            -o-animation-name:bounce_circularG;
+            -o-animation-duration:1.36s;
+            -o-animation-iteration-count:infinite;
+            -o-animation-direction:linear;
+            border-radius:30px;
+            animation-name:bounce_circularG;
+            animation-duration:1.36s;
+            animation-iteration-count:infinite;
+            animation-direction:linear;
+        }
+
+        #circularG_1{
+            left:0;
+            top:79px;
+            -moz-animation-delay:0.51s;
+            -webkit-animation-delay:0.51s;
+            -ms-animation-delay:0.51s;
+            -o-animation-delay:0.51s;
+            animation-delay:0.51s;
+        }
+
+        #circularG_2{
+            left:21px;
+            top:21px;
+            -moz-animation-delay:0.68s;
+            -webkit-animation-delay:0.68s;
+            -ms-animation-delay:0.68s;
+            -o-animation-delay:0.68s;
+            animation-delay:0.68s;
+        }
+
+        #circularG_3{
+            top:0;
+            left:79px;
+            -moz-animation-delay:0.85s;
+            -webkit-animation-delay:0.85s;
+            -ms-animation-delay:0.85s;
+            -o-animation-delay:0.85s;
+            animation-delay:0.85s;
+        }
+
+        #circularG_4{
+            right:21px;
+            top:21px;
+            -moz-animation-delay:1.02s;
+            -webkit-animation-delay:1.02s;
+            -ms-animation-delay:1.02s;
+            -o-animation-delay:1.02s;
+            animation-delay:1.02s;
+        }
+
+        #circularG_5{
+            right:0;
+            top:79px;
+            -moz-animation-delay:1.19s;
+            -webkit-animation-delay:1.19s;
+            -ms-animation-delay:1.19s;
+            -o-animation-delay:1.19s;
+            animation-delay:1.19s;
+        }
+
+        #circularG_6{
+            right:21px;
+            bottom:21px;
+            -moz-animation-delay:1.36s;
+            -webkit-animation-delay:1.36s;
+            -ms-animation-delay:1.36s;
+            -o-animation-delay:1.36s;
+            animation-delay:1.36s;
+        }
+
+        #circularG_7{
+            left:79px;
+            bottom:0;
+            -moz-animation-delay:1.53s;
+            -webkit-animation-delay:1.53s;
+            -ms-animation-delay:1.53s;
+            -o-animation-delay:1.53s;
+            animation-delay:1.53s;
+        }
+
+        #circularG_8{
+            left:21px;
+            bottom:21px;
+            -moz-animation-delay:1.7s;
+            -webkit-animation-delay:1.7s;
+            -ms-animation-delay:1.7s;
+            -o-animation-delay:1.7s;
+            animation-delay:1.7s;
+        }
+
+        @-moz-keyframes bounce_circularG{
+            0%{
+                -moz-transform:scale(1)}
+
+            100%{
+                -moz-transform:scale(.3)}
+
+        }
+
+        @-webkit-keyframes bounce_circularG{
+            0%{
+                -webkit-transform:scale(1)}
+
+            100%{
+                -webkit-transform:scale(.3)}
+
+        }
+
+        @-ms-keyframes bounce_circularG{
+            0%{
+                -ms-transform:scale(1)}
+
+            100%{
+                -ms-transform:scale(.3)}
+
+        }
+
+        @-o-keyframes bounce_circularG{
+            0%{
+                -o-transform:scale(1)}
+
+            100%{
+                -o-transform:scale(.3)}
+
+        }
+
+        @keyframes bounce_circularG{
+            0%{
+                transform:scale(1)}
+
+            100%{
+                transform:scale(.3)}
+
+        }
+
+    </style>
+    <div class="jumbotron">
+        <h1>服务器君使劲加载中……</h1>
+    </div>
+    <div id="circularG">
+        <div id="circularG_1" class="circularG">
+        </div>
+        <div id="circularG_2" class="circularG">
+        </div>
+        <div id="circularG_3" class="circularG">
+        </div>
+        <div id="circularG_4" class="circularG">
+        </div>
+        <div id="circularG_5" class="circularG">
+        </div>
+        <div id="circularG_6" class="circularG">
+        </div>
+        <div id="circularG_7" class="circularG">
+        </div>
+        <div id="circularG_8" class="circularG">
+        </div>
+    </div>
+</div>
+{% endblock %}
