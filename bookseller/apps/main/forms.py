@@ -11,6 +11,9 @@ class ItemCreateForm(forms.Form):
     image = forms.ImageField(required=False)
     tags = forms.IntegerField(min_value=1)
 
+class ItemOrderForm(forms.Form):
+    seller = forms.IntegerField
+
 class ItemUpdateForm(forms.Form):
     description = forms.CharField()
     price = forms.FloatField(min_value=0)

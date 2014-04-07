@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Tags(models.Model):
+    # TODO: add tag manager to support a tag tree.
     name = models.CharField(max_length=256, unique=True)
 
     def __unicode__(self):
@@ -13,7 +14,7 @@ class Item(models.Model):
     title = models.CharField(max_length=256)
     description = models.TextField()
     price = models.FloatField()
-    queue = models.ManyToManyField(User)
+    queue = models.ManyToManyField(User, related_name='order_set')
     number = models.IntegerField()
     left_number = models.IntegerField()
     tag = models.ForeignKey(Tags)
@@ -21,6 +22,8 @@ class Item(models.Model):
     published_time = models.DateTimeField(auto_now=True)
     lasted_update_time = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='image_%Y_%m_%d')
+    owner = models.ForeignKey(User, related_name='item_set')
+    # TODO: add owner.
 
     def if_available(self):
         if self.left_number > 0:
