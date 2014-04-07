@@ -26,9 +26,11 @@
                 </div>
             </div>
             <div class="row">
-                {% if item.if_has_image %}
-                <div class="col-md-3"><img src="{{item.image.url}}" class="img-rounded" id="item_image"></div>
-                {% endif %}
+                <div class="col-md-3"><img src="
+                {% if item.if_has_image %}{{item.image.url}}
+                {% else %}/static/image/wutu.jpg{% endif %}
+                " class="img-rounded" id="item_image"></div>
+
                 <div class="col-md-5">
                     <p>{{item.description}}</p>
                     <span>{{item.published_time}}</span>

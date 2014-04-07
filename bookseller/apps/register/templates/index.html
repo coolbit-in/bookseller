@@ -47,6 +47,8 @@
         <div class="col-md-6 row well project">
             {% if item.if_has_image %}
             <div class="col-md-4"><a href="{% url 'item_detail' item.id %}"><img src="{{ item.image.url }}" alt="..." class="img-rounded"></a></div>
+            {% else %}
+            <div class="col-md-4"><a href="{% url 'item_detail' item.id %}"><img src="/static/image/wutu.jpg" alt="..." class="img-rounded"></a></div>
             {% endif %}
             <div class="col-md-4">
                 <h4><a href="{% url 'item_detail' item.id %}">{{ item.title }}</a><small>{{personName}}</small></h4>
