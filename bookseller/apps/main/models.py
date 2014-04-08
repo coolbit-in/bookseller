@@ -23,7 +23,6 @@ class Item(models.Model):
     lasted_update_time = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='image_%Y_%m_%d')
     owner = models.ForeignKey(User, related_name='item_set')
-    # TODO: add owner.
 
     def if_available(self):
         if self.left_number > 0:

@@ -34,6 +34,7 @@
 
             {% if user.username != item.owner.username %}
                 {% if item.if_available %}
+
             <style>
                 .not_display{
                     display: none;
@@ -49,7 +50,7 @@
                         <label class="sr-only" for="info">留言</label>
                         <input type="text" class="form-control" id="info" placeholder="留言" name="message">
                     </div>
-                    <button type="submit" class="btn btn-default">预订</button>
+                    <button type="submit" class="btn btn-default">留言</button>
                 </form>
                 {% else %}
                 <form class="form-inline" role="form">
