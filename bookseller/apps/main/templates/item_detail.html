@@ -8,7 +8,7 @@
         <div class="row well">
             <div class="row">
                 <div class="col-md-9">
-                    <h3>{{item.title}}</h3>
+                    <h3>[{{item.tag}}]{{item.title}}</h3>
                 </div>
                 <div class="col-md-3">
                     <h5>发布者： {{item.owner.username}}</h5>
@@ -23,7 +23,6 @@
                 <div class="col-md-5">
                     <p>{{item.description}}</p>
                     <span>{{item.published_time}}</span>
-                    <p>{{item.tag}}</p>
                 </div>
                 <div class="col-md-4">
                     <h3>剩余数量: {{item.left_number}}</h3>
@@ -35,7 +34,17 @@
 
             {% if user.username != item.owner.username %}
                 {% if item.if_available %}
+            <style>
+                .not_display{
+                    display: none;
+                }
+            </style>
                 <form class="form-inline" role="form" action="" method="post">{% csrf_token %}
+                    <div class="not_display">
+                        <input type="text" class="form-control"  placeholder="留言" name="item_id" value="{{item.id}}">
+                        <input type="text" class="form-control"  placeholder="留言" name="from_id" value="{{user.id}}">
+                        <input type="text" class="form-control"  placeholder="留言" name="to_id" value="{{item.owner.username}}">
+                    </div>
                     <div class="form-group">
                         <label class="sr-only" for="info">留言</label>
                         <input type="text" class="form-control" id="info" placeholder="留言" name="message">
@@ -48,7 +57,7 @@
                 </form>
                 {% endif %}
             {% else %}
-            <a href="{% url 'item_update' item.id %}">设置</a>
+            <a href="{% url 'item_update' item.id %}"><button class="btn btn-default">修改或删除</button></a>
             {% endif %}
 
         </div>

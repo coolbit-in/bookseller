@@ -3,9 +3,22 @@
 {% block title %}注册{% endblock %}
 
 {% block content%}
+<script type="text/javascript" src="../../../static/js/jquery-2.1.0.min.js"></script>
+<script language="javascript">
+    $(document).ready(function() {
+        $('#id_username').blur(function(){
+            var username = $('#id_username').val();
+            if (username){
+                $.post("/ajax/checkuser/", {name:username},
+                        function(result){
+                            var ret = eval("(" + result + ")");
+                            if (ret.result){
+                                $('#div_uname_hint').html('<span>' + username + '已被注册</span>');
+                            }else{
+                                $('#div_uname_hint').html('<span>' + username + '可以注册</span>');
+                            }});}});});
 
-
-
+</script>
 <body  onload="iniState()">
 <div class="container" id="register">
     <div class="col-md-1">
@@ -40,7 +53,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon">重输密码</span>
-                    <input tabindex="4" class="form-control" id="repassword" name="repassword" type="password" tabindex="1" size="20" maxlength="20" onfocus="clearMsg('div_chkpwd_hint')" onblur="verifychkPwd(repassword.value,txt_chkpwd.value,'div_chkpwd_hint')"/>
+                    <input tabindex="4" class="form-control" id="repassword" name="repassword" type="password" size="20" maxlength="20" onfocus="clearMsg('div_chkpwd_hint')" onblur="verifychkPwd(repassword.value,password.value,'div_chkpwd_hint')"/>
                 </div>
                 <div id="div_chkpwd_hint" class="hint_error"></div>
             </div>

@@ -4,6 +4,13 @@ body { padding-top: 70px; }
     padding-top: 50%;
 }
 
+.half_page{
+    width: 49%;
+    margin-right: 20px;
+}
+
+p{ word-wrap:break-word; word-break:normal; }
+
 /*navbar*/
 .navbar{
     width: 100%;
@@ -12,7 +19,7 @@ body { padding-top: 70px; }
 header li{
     margin-left: 5px;
 }
-.navbar-nav>li>a:not(#nav_list) {
+.navbar-nav>li>a:not(.nav_list) {
     padding:0;
 }
 
@@ -36,11 +43,24 @@ header li{
 }
 
 /*index*/
-img{
+
+#index img{
     height: 550px;
     clear: both;
     display: block;
     margin:auto;
+}
+
+/*list*/
+.item_list img{
+    width: 100%;
+}
+.item_list {
+    height: 150px;
+}
+
+.item_list p{
+    width: 100%;
 }
 
 
@@ -81,6 +101,7 @@ img{
 /*item view*/
 #item_image{
     width: 100%;
+    height: 100%;
 }
 
 
@@ -88,5 +109,8 @@ img{
 #userinfos{
     font-size: 17px;
 }
-#userinfos td{
+
+/*item_update*/
+#project img{
+    width: 100%;
 }

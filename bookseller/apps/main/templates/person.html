@@ -8,29 +8,49 @@
         <h1>个人中心</h1>
     </div>
     <div class="row">
-        <div class="col-md-4">
-            <h3>交易记录</h3>
-            <div class="btn-group-vertical">
-                {% for item in item_list %}
-                <button type="button" class="btn btn-default"><a href="/item/view/{{ item.id }}/">{{ item.title }}</a><span  class="label">&nbsp;&nbsp;</span></button>
-                {% endfor %}
-            </div>
-        </div>
+        <ul class="nav nav-tabs">
+            <li><a href="#info" data-toggle="tab">个人信息</a></li>
+            <li><a href="#logs" data-toggle="tab">交易记录</a></li>
+            <li><a href="#messages" data-toggle="tab">站内信</a></li>
+        </ul>
 
-        <div class="col-md-8">
-            <h3>个人信息</h3>
-            <table id="userinfos" class="table">
-                <tbody>
-                <tr><td>用户名：</td><td>{{ user_info.name }}</td></tr>
-                <tr><td>E-mail：</td><td>{{ user_info.email }}</td></tr>
-                <tr><td>QQ：</td><td>{{ user_info.qq_number }}</td></tr>
-                <tr><td>电话号码：</td><td>{{ user_info.phone_number }}</td></tr>
-                </tbody>
-            </table>
-            <!--<p>学校：{school}</p> -->
-            {% if itself %}
-                <button type="button" class="btn btn-default">修改信息</button>
-            {% endif %}
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="info">
+                <div class="col-md-8">
+                    <h3>个人信息</h3>
+                    <table id="userinfos" class="table">
+                        <tbody>
+                        <tr><td>用户名：</td><td>{{ user_info.name }}</td></tr>
+                        <tr><td>E-mail：</td><td>{{ user_info.email }}</td></tr>
+                        <tr><td>QQ：</td><td>{{ user_info.qq_number }}</td></tr>
+                        <tr><td>电话号码：</td><td>{{ user_info.phone_number }}</td></tr>
+                        </tbody>
+                    </table>
+                    <!--<p>学校：{school}</p> -->
+                    {% if itself %}
+                    <button type="button" class="btn btn-default">修改信息</button>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="tab-pane" id="logs">
+                <div class="col-md-8">
+                    <h3>交易记录</h3>
+                    <div class="">
+
+                        {% for item in item_list %}
+
+                        <blockquote><a href="/item/view/{{ item.id }}/">{{ item.title }}
+                            {% if item.left_number %}<span  class="label">&nbsp;&nbsp;</span></a>{% endif %}
+                        </blockquote>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="messages">
+
+            </div>
         </div>
     </div>
 </div>
