@@ -53,8 +53,9 @@ def list(request, tag_name, page_num):
         posts['has_previous'] = True
     if page_num < posts['pages_count_number']:
         posts['has_next'] = True
+    tag_list = Tags.objects.all().order_by('id')
 
-    return render_to_response('list.html', {'item_list': item_list, 'posts': posts}, context_instance=RequestContext(request))
+    return render_to_response('list.html', {'item_list': item_list, 'posts': posts, 'tag_list': tag_list}, context_instance=RequestContext(request))
 
 def show_search(request):
     return render_to_response('search.html', context_instance=RequestContext(request))
