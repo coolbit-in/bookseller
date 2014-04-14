@@ -1,12 +1,5 @@
-{% extends "base.html" %}
-
-{% block title %}站内信{% endblock %}
-
-{% block content%}
-<div class="container">
-    <div class="page-header">
-        <h1>站内信</h1>
-    </div>
+<div class="col-md-8">
+        <h3>站内信</h3>
     <div id="u2i">
         <table class="table">
             {% for massage in massage_list %}
@@ -17,7 +10,8 @@
                             {{content}} <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><textarea>输入你的回信</textarea>
+                            <li>
+                                <textarea>输入你的回信</textarea>
                                 <button type="submit">回复</button>
                             </li>
                         </ul>
@@ -44,4 +38,3 @@
         </table>
     </div>
 </div>
-{% endblock %}

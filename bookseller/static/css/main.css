@@ -26,9 +26,9 @@ header li{
 
 /*footer*/
 .footer {
-    padding: 20px 0;
+    padding: 10px 0;
     width: 100%;
-    left: 0px;
+    left: 0;
     line-height: 10px;
     background-color: #434a54;
     color: #bdc1c5;
@@ -37,7 +37,6 @@ header li{
     bottom: 0;
     z-index: 5;
     border: 1px solid #999999;
-    background-repeat:repeat-x;
     _position:absolute;
     _top:expression(document.body.scrollTop+document.body.clientHeight-this.clientHeight);
 }
@@ -53,14 +52,20 @@ header li{
 
 /*list*/
 .item_list img{
+    height: 100%;
     width: 100%;
+    padding: 0;
 }
 .item_list {
     height: 150px;
+    padding: 10px;
 }
 
 .item_list p{
     width: 100%;
+}
+#taglist{
+    padding-bottom: 10px;
 }
 
 
