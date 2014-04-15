@@ -80,7 +80,8 @@ def register(request):
                                      qq_number=int(info_dict['qq_number']),
                                      address=info_dict['address'])
             new_user_info.save()
-
+            user = auth.authenticate(username=info_dict['username'], password=info_dict['password'])
+            auth.login(request, user)
             return HttpResponseRedirect('/')
         else:
             print "form is not valid"
@@ -144,9 +145,10 @@ def account(request, id):
     return render_to_response('person.html', {'user_info': render_dict, 'item_list': item_list}, context_instance=RequestContext(request))
 
 @login_required(login_url='/account/login/')
-def message(request):
+def messages(request):
     user = User.objects.get(username=request.user.username)
     message_list = Messages.objects.exclude(from_id=user, to_id=user)
+    print message_list
     return render_to_response('messages.html', {'message_list': message_list}, context_instance=RequestContext(request))
 
 

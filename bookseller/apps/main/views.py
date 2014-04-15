@@ -63,7 +63,7 @@ def detail(request, pk):
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
-            form_dict = form.cleaned_data()
+            form_dict = form.cleaned_data
             if item.status > 0 and request.user.username == User.objects.get(id=form_dict['from_id']).username:
                 message_dict = {}
                 message_dict['from_id'] = User.objects.get(id=form_dict['from_id'])

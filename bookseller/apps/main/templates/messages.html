@@ -2,12 +2,12 @@
         <h3>站内信</h3>
     <div id="u2i">
         <table class="table">
-            {% for massage in massage_list %}
+            {% for message in message_list %}
             <tr>
                 <td>
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            {{content}} <span class="caret"></span>
+                            {{message.content}} <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li>
