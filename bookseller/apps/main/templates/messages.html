@@ -1,40 +1,41 @@
-<div class="col-md-8">
-        <h3>站内信</h3>
+{% extends "base.html" %}
+
+{% block title %}站内信{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>站内信</h1>
+    </div>
+
     <div id="u2i">
-        <table class="table">
+        <h3>收件箱</h3>
             {% for message in message_list %}
-            <tr>
-                <td>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            {{message.content}} <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <textarea>输入你的回信</textarea>
-                                <button type="submit">回复</button>
-                            </li>
-                        </ul>
+                    <div class="bs-callout bs-callout-danger">
+                        关于{{item.title}}：{{item.owner.username}}说
+                        <b>
+                            {{message.content}}
+                        </b>
+                        <div class="input-group form-search">
+                            <input type="text" class="form-control search-query" placeholder="输入你的回信">
+                            <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary" data-type="last">回复</button>
+                            </span>
+                        </div>
                     </div>
-                </td>
-            </tr>
             {% endfor %}
-        </table>
     </div>
     <hr>
     <div id="i2y">
-        <table class="table">
+        <h3>发件箱</h3>
             {% for massage in massage_list %}
-            <tr>
-                <td>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default">
+                    <div class="bs-callout bs-callout-info">
+                        我对{{person.id}}说：
+                        <p>
                             {{content}}
-                        </button>
+                        </p>
                     </div>
-                </td>
-            </tr>
             {% endfor %}
-        </table>
     </div>
 </div>
+{% endblock %}
