@@ -26,6 +26,7 @@ def list(request, tag_name, page_num):
             tag = Tags.objects.get(name=tag_name)
         except Tags.DoesNotExist:
             raise Http404
+
         item_list = Item.objects.filter(tag=tag).order_by('-published_time')
         items_count_num = Item.objects.filter(tag=tag).order_by('-published_time').count()
     else:

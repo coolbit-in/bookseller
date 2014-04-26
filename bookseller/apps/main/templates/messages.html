@@ -12,7 +12,7 @@
         <h3>收件箱</h3>
             {% for message in message_list %}
                     <div class="bs-callout bs-callout-danger">
-                        关于{{item.title}}：{{item.owner.username}}说
+                        关于{{message.item_id.title}}：{{message.from_id.username}}说
                         <b>
                             {{message.content}}
                         </b>

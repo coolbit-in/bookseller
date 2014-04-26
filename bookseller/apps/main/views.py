@@ -65,6 +65,7 @@ def create(request):
 
 @login_required(login_url='/account/login')
 def detail(request, pk):
+    tag_list = models.Tags.objects.all()
     item = models.Item.objects.get(id=pk)
     # TODO: handle order form.
     if request.method == 'POST':
@@ -81,7 +82,7 @@ def detail(request, pk):
                 new_message = models.Messages(**message_dict)
                 new_message.save()
 
-    return render_to_response('item_detail.html', {'item' : item}, context_instance=RequestContext(request))
+    return render_to_response('item_detail.html', {'item' : item, 'tag_list': tag_list}, context_instance=RequestContext(request))
 
 @login_required(login_url='/account/login')
 def update(request, pk):
