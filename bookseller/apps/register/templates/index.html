@@ -1,10 +1,57 @@
 {% extends "base.html" %}
 
-{% block title %}学长卖东西{% endblock %}
+{% block title %}十号地摊{% endblock %}
 
 {% block content %}
+<style>
+    body{
+        background-image :url(../../../static/image/index.jpg);
+        background-size: cover;
+    }
+    .col-md-4{
+        width: 31%;
+        margin-right: 2%;
+    }
+    .well{
+        margin-top: 8%;
+        opacity: 0.6;
+        height: 400px;
+        text-align: center;
+    }
+    img{
+        width: 100%;
+    }
+    :hover{
+        opacity:1;
+    }
+    footer{
+        opacity: 0;
+    }
+</style>
 <div class="container">
-    <img id="index" src="../../../static/image/index.png"/>
+    <div  id="quickstart" class="row">
+        <a href="./list/全部/1/">
+        <div class="col-md-4 well">
+
+            <h1>第一步</h1>
+            <h3>寻找你想要的东西</h3>
+            <img src="../../../static/image/first.jpg" />
+        </div>
+        </a>
+        <a href="./account/messages">
+        <div class="col-md-4 well">
+
+            <h1>第二步</h1>
+            <h3>联系拥有者</h3>
+            <img src="../../../static/image/first.jpg" />
+        </div>
+        </a>
+        <div class="col-md-4 well">
+            <h1>第三步</h1>
+            <h3>约好时间，线下交易</h3>
+            <img src="../../../static/image/first.jpg" />
+        </div>
+    </div>
     <div id="login">
         <!--{% if not user.is_authenticated %}-->
         <!--<form class="form-horizontal col-md-6 well" role="form">-->

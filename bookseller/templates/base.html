@@ -14,7 +14,11 @@
         {% include "header_logOut.html" %}
     {% endif %}
     {% block content %}{% endblock %}
-    {% include "footer.html" %}
+<!--此处应该判断一下是不是是首页，是首页的话，footer就不显示了-->
+    {% if index %}
+    {% else%}
+        {% include "footer.html" %}
+    {% endif %}
     <script src="/static/js/jquery-2.1.0.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/main.js"></script>

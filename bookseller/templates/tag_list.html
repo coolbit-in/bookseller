@@ -1,8 +1,8 @@
 <div id="tags">
     <div class="btn-group">
-        <button type="button" class="btn btn-default"><a href="/list/全部/1/">全部</a></button>
+        <a type="button" class="btn btn-default" href="/list/全部/1/">全部</a>
         {% for tag in tag_list%}
-        <button type="button" class="btn btn-default"><a href="/list/{{ tag.name }}/1/">{{ tag.name }}</a></button>
+        <a type="button" class="btn btn-default" href="/list/{{ tag.name }}/1/">{{ tag.name }}</a>
         {% endfor %}
     </div>
 </div>

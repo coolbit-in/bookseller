@@ -3,9 +3,16 @@
 {% block title %}个人中心{% endblock %}
 
 {% block content%}
+<style>
+    #msgButton{
+        margin-top: 20px;
+        margin-bottom: -20px;
+    }
+</style>
 <div class="container">
-    <div class="page-header">
-        <h1>个人中心</h1>
+    <div class="page-header row">
+        <div class="col-md-10"><h1>个人中心</h1></div>
+        <div class="col-md-2"><a id="msgButton" class="btn btn-info btn-lg" href="/account/messages">站内信</a></div>
     </div>
     <div class="row">
         <ul class="nav nav-tabs">
