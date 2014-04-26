@@ -14,11 +14,11 @@
         <div class="col-md-10"><h1>个人中心</h1></div>
         <div class="col-md-2"><a id="msgButton" class="btn btn-info btn-lg" href="/account/messages">站内信</a></div>
     </div>
-    <div class="row">
-        <ul class="nav nav-tabs">
+    <div class="row panel">
+        <ul class="nav nav-tabs nav-justified">
             <li><a href="#info" data-toggle="tab">个人信息</a></li>
-            <li><a href="#logs" data-toggle="tab">交易记录</a></li>
-            <li><a href="#messages" data-toggle="tab">站内信</a></li>
+            <li><a href="#logs" data-toggle="tab">已发布物品</a></li>
+            <li><a href="#favorite" data-toggle="tab">收藏</a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -42,21 +42,27 @@
             </div>
             <div class="tab-pane" id="logs">
                 <div class="col-md-8">
-                    <h3>交易记录</h3>
-                    <div class="">
-
+                    <h3>已发布物品</h3>
+                    <div class="list-group">
                         {% for item in item_list %}
-
-                        <blockquote><a href="/item/view/{{ item.id }}/">{{ item.title }}
-                            {% if item.left_number %}<span  class="label">&nbsp;&nbsp;</span></a>{% endif %}
-                        </blockquote>
+                        <a href="/item/view/{{ item.id }}/" class="list-group-item">
+                            {{ item.title }}
+                            {% if item.status %}<span  class="label">&nbsp;&nbsp;</span>
+                            {% endif %}
+                        </a>
                         {% endfor %}
 
                     </div>
                 </div>
             </div>
-            <div class="tab-pane" id="messages">
-                {% include "messages.html" %}
+            <div class="tab-pane" id="favorite">
+                <div class="list-group">
+                    {% for favorite_item in favorite_item_list %}
+                    <a href="/item/view/{{ favorite_item.id }}" class="list-group-item">
+                    <h4 class="list-group-item-heading">{{favorite_item.name}}</h4>
+                    </a>
+                    {% endfor %}
+            </div>
             </div>
         </div>
     </div>
