@@ -5,51 +5,113 @@
 {% block content %}
 <style>
     body{
+        padding-top: 100px;
         background-image :url(../../../static/image/index.jpg);
         background-size: cover;
+        background-attachment: fixed;
+        color:#428bca ;
     }
     .col-md-4{
-        width: 31%;
-        margin-right: 2%;
+        width: 27.333%;
+        margin-right: 3%;
+        margin-left: 3%;
     }
     .well{
-        margin-top: 8%;
+        margin-top: 4%;
         opacity: 0.6;
         height: 400px;
         text-align: center;
+        transition:opacity 1.5s;
+        -moz-transition:opacity 1.5s, -moz-transform 2s; /* Firefox 4 */
+        -webkit-transition:opacity 1.5s, -webkit-transform 2s; /* Safari and Chrome */
+        -o-transition:opacity 1.5s,  -o-transform 2s; /* Opera */
     }
     img{
-        width: 100%;
+        margin-top: 40px;
+        height: 30%;
     }
-    :hover{
+    .title{
+        margin-top: 150px;
+        margin-bottom: 150px;
+        color: #ffffff;
+        text-align: center;
+    }
+    .title2{
+        padding-top: 300px;
+        margin-bottom: 300px;
+        color: #ffffff;
+        text-align: center;
+    }
+    h1.header{
+        font-size: 6em;
+    }
+    .well:hover{
         opacity:1;
+    }
+    #sellerQuickstart{
+        margin-bottom: 100px;
     }
     footer{
         opacity: 0;
     }
 </style>
 <div class="container">
-    <div  id="quickstart" class="row">
+    <div id="title" class="row title">
+        <h1 class="header">十号地摊</h1>
+        <h2>让闲置重新焕发光彩</h2>
+        <a class="btn btn-lg btn-info" href="#buy">我要买东西</a>
+        <a class="btn btn-lg btn-danger" href="#sell">我要卖东西</a>
+    </div>
+    <div id="buy" class="row title2" >
+        <h1 class="header">我想要买二手</h1>
+    </div>
+    <div id="buyQuickstart" class="row">
         <a href="./list/全部/1/">
         <div class="col-md-4 well">
 
-            <h1>第一步</h1>
+            <h2>第一步</h2>
             <h3>寻找你想要的东西</h3>
-            <img src="../../../static/image/first.jpg" />
+            <img src="../../../static/image/first.png" />
         </div>
         </a>
         <a href="./account/messages">
         <div class="col-md-4 well">
 
-            <h1>第二步</h1>
+            <h2>第二步</h2>
             <h3>联系拥有者</h3>
-            <img src="../../../static/image/first.jpg" />
+            <img src="../../../static/image/second.png" />
         </div>
         </a>
         <div class="col-md-4 well">
-            <h1>第三步</h1>
+            <h2>第三步</h2>
             <h3>约好时间，线下交易</h3>
-            <img src="../../../static/image/first.jpg" />
+            <img src="../../../static/image/third.png" />
+        </div>
+    </div>
+        <div id="sell" class="row title2">
+        <h1 class="header">我想要卖二手</h1>
+    </div>
+    <div id="sellerQuickstart" class="row">
+        <a href="./item/create/">
+        <div class="col-md-4 well">
+
+            <h2>第一步</h2>
+            <h3>发布你要卖的东西</h3>
+            <img src="../../../static/image/first.png" />
+        </div>
+        </a>
+        <a href="./account/messages">
+        <div class="col-md-4 well">
+
+            <h2>第二步</h2>
+            <h3>等待买家联系</h3>
+            <img src="../../../static/image/second.png" />
+        </div>
+        </a>
+        <div class="col-md-4 well">
+            <h2>第三步</h2>
+            <h3>约好时间，线下交易</h3>
+            <img src="../../../static/image/third.png" />
         </div>
     </div>
     <div id="login">
