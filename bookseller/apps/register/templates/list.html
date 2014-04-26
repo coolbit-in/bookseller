@@ -24,11 +24,13 @@
     <div id="project">
         {% for item in item_list %}
         <div class="col-md-6 row well item_list half_page">
+            <div class="col-md-4"><a href="{% url 'item_detail' item.id %}">
             {% if item.if_has_image %}
-            <div class="col-md-4"><a href="{% url 'item_detail' item.id %}"><img src="{{ item.image.url }}" alt="..." class="img-rounded"></a></div>
+            <img src="{{ item.image.url }}" alt="..." class="img-rounded item_image">
             {% else %}
-            <div class="col-md-4"><a href="{% url 'item_detail' item.id %}"><img src="/static/image/wutu.jpg" alt="..." class="img-rounded"></a></div>
+            <img src="/static/image/wutu.jpg" alt="..." class="img-rounded item_image">
             {% endif %}
+            </a></div>
             <div class="col-md-5">
                 <h4><a href="{% url 'item_detail' item.id %}">{{ item.title }}</a><small>{{personName}}</small></h4>
                 <p class="text_overflow">

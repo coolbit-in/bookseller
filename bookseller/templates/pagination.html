@@ -1,17 +1,17 @@
 <table>
     <tr>
         {% if posts.has_previous %}
-        <td><a href="../{{ posts.previous_page_number }}">上一页 </a></td>
+        <td><a class="btn btn-info" href="../{{ posts.previous_page_number }}">上一页 </a></td>
         {% endif %}
         {% if posts.has_next %}
-        <td><a href="../{{ posts.next_page_number }}">下一页</a></td>
+        <td><a class="btn btn-default" href="../{{ posts.next_page_number }}">下一页</a></td>
         {% endif %}
         <td> 第 {{ posts.page_number }} 页,共 {{ posts.pages_count_number }} 页 </td>
         <form action="." method="get">
             <td>到第</td>
-            <td><input name="page" type="text" ></td>
+            <td><input name="page" class="form-control" type="text" ></td>
             <td> 页 </td>
-            <td><input type="submit" value=" 跳转 "></td>
+            <td><input type="submit" class="btn" value=" 跳转 "></td>
         </form>
     </tr>
 </table>
