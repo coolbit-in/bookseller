@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.http import HttpRequest
 
 from django.http import HttpResponseRedirect
-
+from django.db.models import Q
 from django.template import Context
 from django.template.loader import get_template
 
@@ -19,12 +19,15 @@ from forms import RegisterForm, LoginForm
 from bookseller.apps.main.models import UserInfo, Item, Tags, Messages
 from django.contrib.auth.decorators import login_required
 
+
 def user_auth_test(user):
     return user.is_authenticated()
 
+
 def show_index(request):
     item_list = Item.objects.order_by('-published_time')[0:10]
-    return render_to_response('index.html', {'item_list':item_list}, context_instance=RequestContext(request))
+    return render_to_response('index.html', {'item_list': item_list}, context_instance=RequestContext(request))
+
 
 @login_required(login_url='/account/login/')
 def list(request, tag_name, page_num):
@@ -55,10 +58,13 @@ def list(request, tag_name, page_num):
         posts['has_next'] = True
     tag_list = Tags.objects.all().order_by('id')
 
-    return render_to_response('list.html', {'item_list': item_list, 'posts': posts, 'tag_list': tag_list}, context_instance=RequestContext(request))
+    return render_to_response('list.html', {'item_list': item_list, 'posts': posts, 'tag_list': tag_list},
+                              context_instance=RequestContext(request))
+
 
 def show_search(request):
     return render_to_response('search.html', context_instance=RequestContext(request))
+
 
 def register(request):
     """
@@ -71,7 +77,7 @@ def register(request):
             info_dict = form.cleaned_data
             new_user = User.objects.create_user(username=info_dict['username'],
                                                 email=info_dict['e_mail'],
-                                                password=info_dict['password'],)
+                                                password=info_dict['password'])
             new_user.is_active = True
             #new_user.date_joined = time.asctime()
             new_user.save()
@@ -102,18 +108,22 @@ def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
+            # 使用  username 和 password 的认证登录系统
             user = auth.authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
-            print user
+            #print user
+
+            # 注册完成后直接登录
             if user != None:
-                 auth.login(request, user)
-                 return HttpResponseRedirect('/')
+                auth.login(request, user)
+                return HttpResponseRedirect('/')
             else:
                 return HttpResponseRedirect('/account/errors/invalid_login/')
         else:
             return HttpResponseRedirect("/account/errors/invalid_login/")
     else:
         form = LoginForm()
-    return render_to_response('login.html', {'form' : form}, context_instance=RequestContext(request))
+    return render_to_response('login.html', {'form': form}, context_instance=RequestContext(request))
+
 
 def logout(request):
     if not request.user.is_authenticated():
@@ -121,6 +131,7 @@ def logout(request):
     else:
         auth.logout(request)
         return HttpResponseRedirect('/')
+
 
 @login_required(login_url='/account/login/')
 def account(request, id):
@@ -142,15 +153,23 @@ def account(request, id):
     #print render_dict
     item_list = Item.objects.filter(owner=account_user).order_by('-published_time')
 
-    return render_to_response('person.html', {'user_info': render_dict, 'item_list': item_list}, context_instance=RequestContext(request))
+    return render_to_response('person.html', {'user_info': render_dict, 'item_list': item_list},
+                              context_instance=RequestContext(request))
+
 
 @login_required(login_url='/account/login/')
 def messages(request):
     user = User.objects.get(username=request.user.username)
-    message_list = Messages.objects.exclude(from_id=user, to_id=user)
+
+    # about django.db.models.Q(), to see:
+    # https://docs.djangoproject.com/en/1.5/topics/db/queries/
+    # If you need to execute more complex queries (for example, queries with OR statements), you can use Q objects.
+    # 选择 form_id 或者 to_id 是 当前用户的 Messages
+    message_list = Messages.objects.filter(Q(from_id=user) | Q(to_id=user))
+
     print message_list
     return render_to_response('messages.html', {'message_list': message_list}, context_instance=RequestContext(request))
 
 
 def error_login_invalid(request):
-    return render_to_response('errors/invalid_login.html',{}, context_instance=RequestContext(request))
+    return render_to_response('errors/invalid_login.html', {}, context_instance=RequestContext(request))
