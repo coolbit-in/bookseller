@@ -1,5 +1,6 @@
+# coding:utf-8
 from django.http import HttpResponse
-from django.http import Http404
+from django.http import Http404, HttpResponseBadRequest
 from django.http import HttpRequest
 from django.http import HttpResponseRedirect
 from django.utils.timezone import now
@@ -16,9 +17,15 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 
 from bookseller.apps.main import models, forms
+from bookseller.apps.main.models import Item
 from bookseller.apps.register.forms import MessageForm
-def index(request):
-    return HttpResponse("hello")
+
+def show_index(request):
+    item_list = Item.objects.order_by('-published_time')[0:10]
+    return render_to_response('index.html', {'item_list': item_list}, context_instance=RequestContext(request))
+
+def search(request):
+    return HttpResponseBadRequest()
 
 @login_required(login_url='/account/login')
 def create(request):
@@ -99,7 +106,7 @@ def update(request, pk):
             return HttpResponseRedirect(reverse('item_detail', args=(item.id)))
         else:
             # TODO: handle failed post.
-            return HttpResponseRedirect('/fail')
+            return HttpResponseBadRequest()
     else:
         return render_to_response('item_update.html', {'item' : item, 'user': user}, context_instance=RequestContext(request))
 
@@ -114,7 +121,7 @@ def delete(request, pk):
         item.delete()
         return HttpResponseRedirect('/')
     else:
-        return HttpResponseRedirect('/fail/')
+        return HttpResponseBadRequest()
 
 
 def get_user(request):

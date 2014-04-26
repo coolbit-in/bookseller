@@ -19,16 +19,6 @@ from forms import RegisterForm, LoginForm
 from bookseller.apps.main.models import UserInfo, Item, Tags, Messages
 from django.contrib.auth.decorators import login_required
 
-
-def user_auth_test(user):
-    return user.is_authenticated()
-
-
-def show_index(request):
-    item_list = Item.objects.order_by('-published_time')[0:10]
-    return render_to_response('index.html', {'item_list': item_list}, context_instance=RequestContext(request))
-
-
 @login_required(login_url='/account/login/')
 def list(request, tag_name, page_num):
     if tag_name != '全部':

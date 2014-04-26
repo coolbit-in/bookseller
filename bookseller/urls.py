@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from bookseller import settings
 # Uncomment the next two lines to enable the admin:
+from bookseller.apps.main import views
 from django.contrib import admin
 admin.autodiscover()
 from django.conf.urls.static import static
@@ -17,8 +18,8 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^$', 'bookseller.apps.register.views.show_index'),
-    url(r'^search/$', 'bookseller.apps.register.views.show_search'),
+    url(r'^$', views.show_index),
+    url(r'^search/$', views.search),
     url(r'^item/', include('bookseller.apps.main.urls')),
     url(r'^account/', include('bookseller.apps.register.urls')),
     url(r'^admin/', include(admin.site.urls)),
