@@ -1,5 +1,6 @@
 # coding:utf-8
 from django.http import HttpResponse
+from django.db.models import Q
 from django.http import Http404, HttpResponseBadRequest
 from django.http import HttpRequest
 from django.http import HttpResponseRedirect
@@ -17,8 +18,9 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 
 from bookseller.apps.main import models, forms
-from bookseller.apps.main.models import Item
+from bookseller.apps.main.models import Item, Messages
 from bookseller.apps.register.forms import MessageForm
+
 
 def show_index(request):
     item_list = Item.objects.order_by('-published_time')[0:10]
@@ -82,7 +84,15 @@ def detail(request, pk):
                 new_message = models.Messages(**message_dict)
                 new_message.save()
 
-    return render_to_response('item_detail.html', {'item' : item, 'tag_list': tag_list}, context_instance=RequestContext(request))
+    user = User.objects.get(username=request.user.username)
+
+    # about django.db.models.Q(), to see:
+    # https://docs.djangoproject.com/en/1.5/topics/db/queries/
+    # If you need to execute more complex queries (for example, queries with OR statements), you can use Q objects.
+    # 选择 form_id 或者 to_id 是 当前用户的 Messages
+    message_list = Messages.objects.filter(Q(from_id=user) | Q(to_id=user))
+
+    return render_to_response('item_detail.html', {'item' : item, 'tag_list': tag_list, 'message_list': message_list}, context_instance=RequestContext(request))
 
 @login_required(login_url='/account/login')
 def update(request, pk):

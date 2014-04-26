@@ -33,7 +33,7 @@
 
         <div class="row well">
             {% for message in message_list %}
-                {% if messages.from_id == user.id %}
+                {% if message.from_id.username == user.username %}
                 <div class="bs-callout bs-callout-success">
                     我说
                     <b>
@@ -42,7 +42,7 @@
                 </div>
                 {% else %}
                 <div class="bs-callout bs-callout-danger">
-                    {{messages.from_id}}说
+                    {{message.from_id.username}}说
                     <b>
                         {{message.content}}
                     </b>
