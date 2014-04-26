@@ -30,28 +30,39 @@
                 </div>
             </div>
         </div>
-        <div class="row well">
 
+        <div class="row well">
+            {% for message in message_list %}
+                {% if messages.from_id == user.id %}
+                <div class="bs-callout bs-callout-success">
+                    我说
+                    <b>
+                        {{message.content}}
+                    </b>
+                </div>
+                {% else %}
+                <div class="bs-callout bs-callout-danger">
+                    {{messages.from_id}}说
+                    <b>
+                        {{message.content}}
+                    </b>
+                    <div class="input-group form-search">
+                        <input type="text" class="form-control search-query" placeholder="输入你的回信">
+                        <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary" data-type="last">回复</button>
+                        </span>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            <div class="form-group col-md-5">
+                        <label class="sr-only" for="info">留言</label>
+                        <textarea type="text" class="form-control " id="info" placeholder="留言" rows="1"  name="content"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default">留言</button>
             {% if user.username != item.owner.username %}
                 {% if item.if_available %}
 
-            <style>
-                .not_display{
-                    display: none;
-                }
-            </style>
-                <form class="form-inline" role="form" action="" method="post">{% csrf_token %}
-                    <div class="not_display">
-                        <input type="text" class="form-control"  placeholder="留言" name="item_id" value="{{item.id}}">
-                        <input type="text" class="form-control"  placeholder="留言" name="from_id" value="{{user.id}}">
-                        <input type="text" class="form-control"  placeholder="留言" name="to_id" value="{{item.owner.id}}">
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="info">留言</label>
-                        <input type="text" class="form-control" id="info" placeholder="留言" name="content">
-                    </div>
-                    <button type="submit" class="btn btn-default">留言</button>
-                </form>
                 {% else %}
                 <form class="form-inline" role="form">
                     <p>都被预订了，下次早来呦！</p>
@@ -60,7 +71,6 @@
             {% else %}
             <a href="{% url 'item_update' item.id %}"><button class="btn btn-default">修改或删除</button></a>
             {% endif %}
-
-        </div>
+    </div>
     </div>
 {% endblock %}
