@@ -24,6 +24,7 @@ class Item(models.Model):
     image = models.ImageField(upload_to='image_%Y_%m_%d')
     owner = models.ForeignKey(User, related_name='item_set')
 
+
     def if_available(self):
         if self.left_number > 0:
             return True
@@ -64,4 +65,5 @@ class UserInfo(models.Model):
     phone_number = models.IntegerField(max_length=11)
     qq_number = models.IntegerField(max_length=15)
     address = models.TextField(max_length=256)
+    favorite_item = models.ManyToManyField(Item)
 

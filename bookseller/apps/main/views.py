@@ -90,7 +90,7 @@ def detail(request, pk):
     # https://docs.djangoproject.com/en/1.5/topics/db/queries/
     # If you need to execute more complex queries (for example, queries with OR statements), you can use Q objects.
     # 选择 form_id 或者 to_id 是 当前用户的 Messages
-    message_list = Messages.objects.filter(Q(from_id=user) | Q(to_id=user))
+    message_list = Messages.objects.filter((Q(from_id=user) | Q(to_id=user)) & Q(item_id=item))
 
     return render_to_response('item_detail.html', {'item' : item, 'tag_list': tag_list, 'message_list': message_list}, context_instance=RequestContext(request))
 
