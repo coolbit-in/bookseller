@@ -3,63 +3,84 @@
 {% block title %}{{item.title}}{% endblock %}
 
 {% block content%}
+<style>
+    .left{
+        display: inline-block;
+        position: relative;
+        text-align: right;
+        float: right;
+        background-color: darkgreen;
+        margin-bottom: 5px;
+    }
+    .right{
+        display: inline-block;
+        position: relative;
+        background: orangered;
+        margin-bottom: 5px;
+    }
+    .popover-content{
+        color: #ffffff;
+    }
+
+    .block{
+        display: block;
+    }
+    .lastwell{
+        margin-bottom: 80px;
+    }
+</style>
     <div class="container">
         {% include "tag_list.html" %}
         <div class="row well">
             <div class="row">
-                <div class="col-md-9">
-                    <h3>[{{item.tag}}]{{item.title}}</h3>
-                </div>
-                <div class="col-md-3">
-                    <h5>发布者： {{item.owner.username}}</h5>
-                </div>
+                <h2 class="col-md-9">[{{item.tag}}]{{item.title}}</h2>
+                <p class="col-md-3">发布者： {{item.owner.username}}</p>
             </div>
             <div class="row">
                 <div class="col-md-3"><img src="
                 {% if item.if_has_image %}{{item.image.url}}
                 {% else %}/static/image/wutu.jpg{% endif %}
                 " class="img-rounded" id="item_image"></div>
-
                 <div class="col-md-5">
                     <p>{{item.description}}</p>
                     <span>{{item.published_time}}</span>
                 </div>
                 <div class="col-md-4">
-                    <h3>剩余数量: {{item.left_number}}</h3>
+                    <h3>还剩下：{{item.left_number}}</h3>
                     <h3>人民币：{{item.price}}元</h3>
                 </div>
             </div>
         </div>
 
-        <div class="row well">
+        <div class="row well lastwell">
             {% for message in message_list %}
                 {% if message.from_id.username == user.username %}
-                <div class="bs-callout bs-callout-success">
-                    我说
-                    <b>
-                        {{message.content}}
-                    </b>
+                <div class="block col-md-12">
+                <div class="popover left">
+                    <div class="arrow"></div>
+                    <h3 class="popover-title">我说</h3>
+                    <div class="popover-content">
+                        <p>{{message.content}}</p>
+                    </div>
+                </div>
                 </div>
                 {% else %}
-                <div class="bs-callout bs-callout-danger">
-                    {{message.from_id.username}}说
-                    <b>
-                        {{message.content}}
-                    </b>
-                    <div class="input-group form-search">
-                        <input type="text" class="form-control search-query" placeholder="输入你的回信">
-                        <span class="input-group-btn">
-                        <button type="submit" class="btn btn-primary" data-type="last">回复</button>
-                        </span>
-                    </div>
+                <div class="block col-md-12">
+                <div class="popover right">
+                  <div class="arrow"></div>
+                  <h3 class="popover-title">{{message.from_id.username}}说</h3>
+                  <div class="popover-content">
+                    <p>{{message.content}}</p>
+                  </div>
+                </div>
                 </div>
                 {% endif %}
             {% endfor %}
-            <div class="form-group col-md-5">
-                        <label class="sr-only" for="info">留言</label>
-                        <textarea type="text" class="form-control " id="info" placeholder="留言" rows="1"  name="content"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-default">留言</button>
+            <div class="form-group">
+                 <label class="sr-only" for="info">留言</label>
+                 <textarea type="text" class="form-control " id="info" placeholder="留言" rows="1"  name="content"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">留言</button>
             {% if user.username != item.owner.username %}
                 {% if item.if_available %}
 

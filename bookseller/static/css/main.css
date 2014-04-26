@@ -82,7 +82,6 @@ header li{
     position: fixed; !important;
     bottom: 0;
     z-index: 5;
-    border: 1px solid #999999;
     _position:absolute;
     _top:expression(document.body.scrollTop+document.body.clientHeight-this.clientHeight);
 }
