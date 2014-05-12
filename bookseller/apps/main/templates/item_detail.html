@@ -80,7 +80,7 @@
                  <label class="sr-only" for="info">留言</label>
                  <textarea type="text" class="form-control " id="info" placeholder="留言" rows="1"  name="content"></textarea>
             </div>
-            <button type="submit" class="btn btn-default">留言</button>
+            <button type="submit" class="btn btn-success">留言</button>
             {% if user.username != item.owner.username %}
                 {% if item.if_available %}
 
@@ -90,7 +90,7 @@
                 </form>
                 {% endif %}
             {% else %}
-            <a href="{% url 'item_update' item.id %}"><button class="btn btn-default">修改或删除</button></a>
+            <a href="{% url 'item_update' item.id %}"><button class="btn btn-warning">修改或删除</button></a>
             {% endif %}
     </div>
     </div>

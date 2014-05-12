@@ -5,14 +5,23 @@
 {% block content%}
 <style>
     #msgButton{
-        margin-top: 20px;
-        margin-bottom: -20px;
+        margin-top: 40px;
+        margin-bottom: -40px;
+    }
+    #changeInfoButton{
+        margin-bottom: 20px;
+    }
+    a span{
+        float: right;
+    }
+    .row{
+        padding: 3px;
     }
 </style>
 <div class="container">
     <div class="page-header row">
         <div class="col-md-10"><h1>个人中心</h1></div>
-        <div class="col-md-2"><a id="msgButton" class="btn btn-info btn-lg" href="/account/messages">站内信</a></div>
+        <div class="col-md-2"><a id="msgButton" class="btn btn-primary btn-lg" href="/account/messages">站内信</a></div>
     </div>
     <div class="row panel">
         <ul class="nav nav-tabs nav-justified">
@@ -35,8 +44,8 @@
                         </tbody>
                     </table>
                     <!--<p>学校：{school}</p> -->
-                    {% if itself %}
-                    <button type="button" class="btn btn-default">修改信息</button>
+                    {% if user_info.name %}
+                    <a id="changeInfoButton" href="./change_user_info.html" type="button" class="btn btn-info">修改信息(这个功能目前被封印了)</a>
                     {% endif %}
                 </div>
             </div>
@@ -47,8 +56,10 @@
                         {% for item in item_list %}
                         <a href="/item/view/{{ item.id }}/" class="list-group-item">
                             {{ item.title }}
-                            {% if item.status %}<span  class="label">&nbsp;&nbsp;</span>
-                            {% endif %}
+                                <span  class="label
+                                {% if item.status %}label-success
+                                {% endif %}
+                                ">&nbsp;&nbsp;</span>
                         </a>
                         {% endfor %}
 

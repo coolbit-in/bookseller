@@ -1,4 +1,8 @@
-body { padding-top: 70px; }
+body {
+    padding-top: 70px;
+    background-image: url("../image/sativa.png");
+    background-repeat: repeat;
+}
 
 .inTheMiddle{
     padding-top: 50%;
@@ -102,7 +106,7 @@ header li{
     padding: 0;
 }
 .item_list {
-    height: 150px;
+    height: 170px;
     padding: 10px;
 }
 
